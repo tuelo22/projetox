@@ -40,7 +40,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
                 }
             }
 
-            if (!Valido())
+            if (Valido() && String.IsNullOrEmpty(Numero))
             {
                 AddMensagem(Mensagem.Error("Documento inválido, por favor verificar."));
             }

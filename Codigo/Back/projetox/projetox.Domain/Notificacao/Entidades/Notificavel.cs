@@ -1,15 +1,18 @@
-﻿using projetox.Domain.Notification.Interfaces;
+﻿using projetox.Domain.Notification.Enumerados;
+using projetox.Domain.Notification.Interfaces;
 
 namespace projetox.Domain.Notification.Entidades
 {
     public abstract class Notificavel : INotificavel
     {
-        private static List<Mensagem> Mensagens => new();
+        private List<Mensagem> Mensagens;
 
-        public IReadOnlyCollection<Mensagem> GetMensagens()
+        public Notificavel()
         {
-            return Mensagens;
+            Mensagens = new();
         }
+
+        public IReadOnlyCollection<Mensagem> GetMensagens() => Mensagens;
 
         public void AddMensagem(Mensagem mensagem)
         {
@@ -18,7 +21,9 @@ namespace projetox.Domain.Notification.Entidades
 
         public void AddMensagens(INotificavel notificavel)
         {
-            Mensagens.AddRange(notificavel.GetMensagens());
+            var mensagens = notificavel.GetMensagens().ToList();
+
+            Mensagens.AddRange(mensagens);
         }
 
         public void Limpar()
@@ -28,7 +33,9 @@ namespace projetox.Domain.Notification.Entidades
 
         public bool Valido()
         {
-            return Mensagem.Sucesso(Mensagens);
+           var erro = Mensagens.Where(x => x.TipoMensagem == TipoMensagem.Error || x.TipoMensagem == TipoMensagem.Fatal).ToList();
+
+            return !erro.Any();
         }
     }
 }

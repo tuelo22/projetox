@@ -22,7 +22,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
 
         public string CriptografarSenha(string senha)
         {
-            if (ValidarSenha(senha))
+            if (!ValidarSenha(senha))
             {
                 AddMensagem(Mensagem.Error("Senha fora do padrão, por favor verificar."));
 

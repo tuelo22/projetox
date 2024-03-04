@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using projetox.Api.Controllers.Base;
+using projetox.Repository.Transactions;
 
 namespace projetox.Api.Controllers.Autenticacao
 {
@@ -9,6 +10,10 @@ namespace projetox.Api.Controllers.Autenticacao
     [Authorize]
     public class UsuarioAutenticadoController : ControllerAPIBase
     {
+        public UsuarioAutenticadoController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+        }
+
         [HttpPut("AlterarSenha")]
         public IActionResult AlterarSenha(string senhaAtual, string senhaNova, string senhaNova2)
         {

@@ -3,6 +3,7 @@ using projetox.Api.Controllers.Base;
 using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
 using projetox.Domain.Autenticacao.Entidades;
 using projetox.Domain.Autenticacao.Interfaces.Service;
+using projetox.Repository.Transactions;
 
 namespace projetox.Api.Controllers.Autenticacao
 {
@@ -13,14 +14,15 @@ namespace projetox.Api.Controllers.Autenticacao
         private readonly IRegistrarUsuarioService _RegistrarUsuarioService;
         private readonly IResetarSenhaUsuario _ResetarSenhaUsuario;
 
-        public UsuarioController(IRegistrarUsuarioService registrarUsuarioService, IResetarSenhaUsuario resetarSenhaUsuario)
+        public UsuarioController(IUnitOfWork unitOfWork, IRegistrarUsuarioService registrarUsuarioService, IResetarSenhaUsuario resetarSenhaUsuario) 
+            : base(unitOfWork)
         {
             _RegistrarUsuarioService = registrarUsuarioService;
             _ResetarSenhaUsuario = resetarSenhaUsuario;
         }
 
-        [HttpPost]
-        public IActionResult Post(NovoUsuarioDTO usuario)
+        [HttpPost("Cadastrar")]
+        public IActionResult Cadastrar([FromBody] NovoUsuarioDTO usuario)
         {
             try
             {

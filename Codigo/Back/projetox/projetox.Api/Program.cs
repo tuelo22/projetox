@@ -16,6 +16,7 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddJWTConfiguration();
+        builder.Services.AddInjecaoDependencia();
         builder.Services.AddDbContext<XContext>(c =>
         {
             c.UseSqlServer(builder.Configuration.GetConnectionString("ProjetoXConnection"));
@@ -36,43 +37,6 @@ internal class Program
         app.UseAuthorization();
 
         app.MapControllers();
-
-        // Rota para autenticação
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapPost("/login", async context =>
-            {
-                var username = context.Request.Form["username"];
-                var password = context.Request.Form["password"];
-
-                // Verificação de usuário e senha (implementação de exemplo)
-                if (username == "usuario" && password == "senha")
-                {
-                    var token = JWTConfiguration.GenerateJwtToken(username);
-                    await context.Response.WriteAsJsonAsync(new { token });
-                }
-                else
-                {
-                    context.Response.StatusCode = 401; // Unauthorized
-                }
-            });
-
-            endpoints.MapGet("/test", async context =>
-            {
-                // Aqui você pode acessar o contexto do usuário autenticado
-                var user = context.User;
-                if (user.Identity.IsAuthenticated)
-                {
-                    // Obter informações do usuário
-                    var userId = user.FindFirst(ClaimTypes.Name)?.Value;
-                    await context.Response.WriteAsync($"Usuário autenticado com ID: {userId}");
-                }
-                else
-                {
-                    await context.Response.WriteAsync("Usuário não autenticado");
-                }
-            });
-        });
 
         app.Run();
     }
