@@ -13,12 +13,17 @@ namespace projetox.Api.Controllers.Autenticacao
     {
         private readonly IRegistrarUsuarioService _RegistrarUsuarioService;
         private readonly IResetarSenhaUsuario _ResetarSenhaUsuario;
+        private readonly ITokenService _TokenService;
 
-        public UsuarioController(IUnitOfWork unitOfWork, IRegistrarUsuarioService registrarUsuarioService, IResetarSenhaUsuario resetarSenhaUsuario) 
-            : base(unitOfWork)
+        public UsuarioController(
+            IUnitOfWork unitOfWork, 
+            IRegistrarUsuarioService registrarUsuarioService, 
+            IResetarSenhaUsuario resetarSenhaUsuario, 
+            ITokenService tokenService) : base(unitOfWork)
         {
             _RegistrarUsuarioService = registrarUsuarioService;
             _ResetarSenhaUsuario = resetarSenhaUsuario;
+            _TokenService = tokenService;
         }
 
         [HttpPost("Cadastrar")]
@@ -29,6 +34,24 @@ namespace projetox.Api.Controllers.Autenticacao
                 var response = _RegistrarUsuarioService.Registrar(usuario);
 
                 return ResponseAPI(response, _RegistrarUsuarioService);
+            }
+            catch (Exception ex)
+            {
+                return ResponseAPIException(ex);
+            }
+        }
+
+        [HttpPost("login", Name ="login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Login(LoginDTO dto)
+        {
+            try
+            {
+                var response = _TokenService.Gerar(dto);
+
+                return ResponseAPI(response, _TokenService);
             }
             catch (Exception ex)
             {

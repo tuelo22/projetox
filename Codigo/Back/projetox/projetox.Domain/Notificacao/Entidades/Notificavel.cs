@@ -35,7 +35,7 @@ namespace projetox.Domain.Notification.Entidades
         {
            var erro = Mensagens.Where(x => x.TipoMensagem == TipoMensagem.Error || x.TipoMensagem == TipoMensagem.Fatal).ToList();
 
-            return !erro.Any();
+            return erro.Count == 0;
         }
     }
 }

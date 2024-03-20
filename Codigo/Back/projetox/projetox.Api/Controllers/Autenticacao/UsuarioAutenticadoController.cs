@@ -14,14 +14,14 @@ namespace projetox.Api.Controllers.Autenticacao
         {
         }
 
-        [HttpPut("AlterarSenha")]
-        public IActionResult AlterarSenha(string senhaAtual, string senhaNova, string senhaNova2)
+        [HttpPut("AlterarSenha/{idUsuario}/{senhaAtual}/{senhaNova}/{senhaNova2}")]
+        public IActionResult AlterarSenha(Guid idUsuario, string senhaAtual, string senhaNova, string senhaNova2)
         {
             return Ok();
         }
 
         [HttpPut("AlterarEmail")]
-        public IActionResult AlterarEmail(string novoEmail)
+        public IActionResult AlterarEmail(Guid idUsuario, string novoEmail)
         {
             return Ok();
         }
@@ -29,7 +29,7 @@ namespace projetox.Api.Controllers.Autenticacao
         [HttpPut("ConfirmarEmail")]
         public IActionResult ConfirmarEmail(Guid idUsuario)
         {
-            return Ok();
+            return Ok("Funciona troxxxa");
         }
     }
 }

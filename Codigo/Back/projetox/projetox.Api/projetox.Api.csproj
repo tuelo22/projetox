@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>ac863374-8e76-4e0e-8c1b-ef931e51d09c</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>.\projetox.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +21,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
@@ -26,10 +29,6 @@
   <ItemGroup>
     <ProjectReference Include="..\projetox.Domain\projetox.Domain.csproj" />
     <ProjectReference Include="..\projetox.Repository\projetox.Repository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Security\" />
   </ItemGroup>
 
 </Project>

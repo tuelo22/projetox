@@ -12,7 +12,7 @@ namespace projetox.Api.Extensoes
     {
         public static void AddInjecaoDependencia(this IServiceCollection services) 
         {
-            services.AddScoped<IAutenticarUsuarioService, AutenticarUsuarioService>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IRegistrarUsuarioService, RegistrarUsuarioService>();
             services.AddScoped<IResetarSenhaUsuario, ResetarSenhaUsuario>();
             services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();

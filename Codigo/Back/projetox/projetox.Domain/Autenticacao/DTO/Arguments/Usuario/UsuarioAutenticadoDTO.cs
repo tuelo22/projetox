@@ -1,6 +1,6 @@
 ﻿namespace projetox.Domain.Autenticacao.DTO.Arguments.Usuario
 {
-    public class UsuarioAutenticadoDTO
+    public struct UsuarioAutenticadoDTO
     {
         public Guid Id { get; set; }
         public string PrimeiroNome { get; set; }
