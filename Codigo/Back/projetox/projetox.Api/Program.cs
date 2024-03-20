@@ -83,7 +83,7 @@ internal class Program
 
             options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {
-                Name = "Autorization",
+                Name = "Authorization",
                 Type = SecuritySchemeType.ApiKey,
                 Scheme = "Bearer",
                 BearerFormat = "JWT",
