@@ -22,9 +22,6 @@ internal class Program
                 operation.Responses.Add("403", new OpenApiResponse { Description = "Você não tem permissão para acessar este servidor." });
                 operation.Responses.Add("500", new OpenApiResponse { Description = "Erro interno ao processar requisição." });
 
-                // Atribuindo descrição aos responses adicionados na controller
-                // Foi feito assim porque cada um tem um retorno diferente.
-
                 var k200 = operation.Responses.Where(x => x.Key == "200");
                 var k400 = operation.Responses.Where(x => x.Key == "400");
 
