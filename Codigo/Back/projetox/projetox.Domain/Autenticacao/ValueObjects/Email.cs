@@ -16,7 +16,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
         public Email(string endereco)
         {
             Confirmado = false;
-            Endereco = endereco;
+            Endereco = endereco.ToLower();
 
             if (!Valido(endereco))
             {

@@ -3,7 +3,7 @@ using projetox.Domain.Base.Entidades;
 using projetox.Domain.Base.Interfaces.Repository;
 using System.Linq.Expressions;
 
-namespace projetox.Repository.Base.Repositories
+namespace projetox.Repository.Base.Repository
 {
     public class RepositoryBase<TEntidade, TId> : IRepositoryBase<TEntidade, TId>
             where TEntidade : PersistenceEntity

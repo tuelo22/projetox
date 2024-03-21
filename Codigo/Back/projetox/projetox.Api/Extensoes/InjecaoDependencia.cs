@@ -2,8 +2,8 @@
 using projetox.Domain.Autenticacao.Interfaces.Service;
 using projetox.Domain.Autenticacao.Services;
 using projetox.Domain.Base.Interfaces.Repository;
-using projetox.Repository.Autenticacao.Repositories;
-using projetox.Repository.Base.Repositories;
+using projetox.Repository.Autenticacao.Repository;
+using projetox.Repository.Base.Repository;
 using projetox.Repository.Transactions;
 
 namespace projetox.Api.Extensoes

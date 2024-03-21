@@ -4,5 +4,94 @@
         <name>projetox.Api</name>
     </assembly>
     <members>
+        <member name="T:projetox.Api.Controllers.Autenticacao.SegurancaController">
+            <summary>
+            Alteracao de dados de seguranca do usuario
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.SegurancaController.#ctor(projetox.Repository.Transactions.IUnitOfWork)">
+            <summary>
+            Alteracao de dados de seguranca do usuario
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.SegurancaController.AlterarSenha(System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Alteracao de senha.
+            </summary>
+            <remarks>
+            Altera a senha do usuario
+            </remarks>
+            <param name="idUsuario">Identificador</param>
+            <param name="senhaAtual">Senha atual</param>
+            <param name="senhaNova">Nova senha</param>
+            <param name="senhaNova2">Repeticao da nova senha</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.SegurancaController.AlterarEmail(System.Guid,System.String)">
+            <summary>
+            Alteracao de e-mail.
+            </summary>
+            <remarks>
+            Altera o email do usuario e envia um e-mail de confirmação antes de aceitar a mudanca.
+            </remarks>
+            <param name="idUsuario">Identificador</param>
+            <param name="novoEmail">Senha atual</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.SegurancaController.ReenviaConfirmarEmail(System.Guid)">
+            <summary>
+            Reenvia a confirmacao de e-mail
+            </summary>
+            <remarks>
+            Reenvia ao novo email a mensagem de confirmacao.
+            </remarks>
+            <param name="idUsuario">Reenvia o email de confirmacao</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.SegurancaController.ConfirmarEmail(System.Guid,System.String,System.String)">
+            <summary>
+            Confirma e-mail
+            </summary>
+            <remarks>
+            Reenvia ao novo email a mensagem de confirmacao.
+            </remarks>
+            <param name="idUsuario">Identificador</param>
+            <param name="email">Senha atual</param>
+            <param name="codigo">Nova senha</param>
+        </member>
+        <member name="T:projetox.Api.Controllers.Autenticacao.UsuarioController">
+            <summary>
+            Controlador de usuarios nao autenticados
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Autenticacao.Interfaces.Service.IRegistrarUsuarioService,projetox.Domain.Autenticacao.Interfaces.Service.IResetarSenhaUsuario,projetox.Domain.Autenticacao.Interfaces.Service.ITokenService)">
+            <summary>
+            Controlador de usuarios nao autenticados
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.Cadastrar(projetox.Domain.Autenticacao.DTO.Arguments.Usuario.NovoUsuarioDTO)">
+            <summary>
+            Cadastro de usuarios
+            </summary>
+            <remarks>
+            Cadastro um novo usuario
+            </remarks>
+            <param name="usuario">Dados do usuario</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.Login(projetox.Domain.Autenticacao.DTO.Arguments.Usuario.LoginDTO)">
+            <summary>
+            Login
+            </summary>
+            <remarks>
+            Autenticacao
+            </remarks>
+            <param name="dto">Dados de autenticacao</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.EsqueciMinhaSenha(System.String)">
+            <summary>
+            Esqueci minha senha.
+            </summary>
+            <remarks>
+            Reseta a senha do usuario e envia um email com a nova senha gerada dinamicamente. 
+            </remarks>
+            <param name="email">E-mail do usuario.</param>
+        </member>
     </members>
 </doc>

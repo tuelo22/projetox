@@ -4,12 +4,13 @@ using projetox.Domain.Autenticacao.Interfaces.Repository;
 using projetox.Domain.Autenticacao.Interfaces.Service;
 using projetox.Domain.Autenticacao.ValueObjects;
 using projetox.Domain.Base.DTO.Arguments;
+using projetox.Domain.Base.Service;
 using projetox.Domain.Notification.DTO;
 using projetox.Domain.Notification.Entidades;
 
 namespace projetox.Domain.Autenticacao.Services
 {
-    public class RegistrarUsuarioService : Notificavel, IRegistrarUsuarioService
+    public class RegistrarUsuarioService : ServiceBase, IRegistrarUsuarioService
     {
         private readonly IRepositoryUsuario _repositoryUsuario;
 

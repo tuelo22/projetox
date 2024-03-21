@@ -1,10 +1,11 @@
 ﻿using projetox.Domain.Autenticacao.Interfaces.Service;
 using projetox.Domain.Base.DTO.Arguments;
+using projetox.Domain.Base.Service;
 using projetox.Domain.Notification.Entidades;
 
 namespace projetox.Domain.Autenticacao.Services
 {
-    public class ResetarSenhaUsuario : Notificavel, IResetarSenhaUsuario
+    public class ResetarSenhaUsuario : ServiceBase, IResetarSenhaUsuario
     {
         public ResponseBaseDTO Resetar(string email)
         {

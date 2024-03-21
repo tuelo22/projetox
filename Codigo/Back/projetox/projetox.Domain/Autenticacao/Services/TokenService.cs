@@ -1,9 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using projetox.Domain.Autenticacao.DTO.Arguments.Token;
 using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
 using projetox.Domain.Autenticacao.Interfaces.Repository;
 using projetox.Domain.Autenticacao.Interfaces.Service;
 using projetox.Domain.Autenticacao.ValueObjects;
+using projetox.Domain.Base.Service;
+using projetox.Domain.Notification.DTO;
 using projetox.Domain.Notification.Entidades;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,7 +14,7 @@ using System.Text;
 
 namespace projetox.Domain.Autenticacao.Services
 {
-    public class TokenService : Notificavel, ITokenService
+    public class TokenService : ServiceBase, ITokenService
     {
         private readonly IRepositoryUsuario _RepositoryUsuario;
         private readonly IConfiguration _Configuration;
@@ -22,25 +25,33 @@ namespace projetox.Domain.Autenticacao.Services
             _RepositoryUsuario = repositoryUsuario;
         }
 
-        public string Gerar(LoginDTO? dto)
+        private TokenDTO GetReturn(string? token = null)
+        {
+            return new TokenDTO()
+            {
+                Token = token
+            };
+        }
+
+        public TokenDTO Gerar(LoginDTO? dto)
         {
             if(dto == null)
             {
                 AddMensagem(Mensagem.Error("É obrigatório informar os dados do usuário."));
 
-                return String.Empty;
+                return GetReturn();
             }
 
             Senha senhacriptografada = new(dto?.Senha ?? string.Empty);
             String Login = dto?.Login ?? string.Empty;
 
-            var usuario = _RepositoryUsuario.ListarPor(x => x.Email.Endereco == Login && x.Senha.Valor == senhacriptografada.Valor).FirstOrDefault();
+            var usuario = _RepositoryUsuario.ListarPor(x => x.Email.Endereco == Login.ToLower() && x.Senha.Valor == senhacriptografada.Valor).FirstOrDefault();
 
             if (usuario == null)
             {
                 AddMensagem(Mensagem.Error("Dados incorretos."));
 
-                return String.Empty;
+                return GetReturn();
             }
 
             if (Valido() && usuario != null)
@@ -63,10 +74,12 @@ namespace projetox.Domain.Autenticacao.Services
 
                 var token = new JwtSecurityTokenHandler().WriteToken( _tokenOptions);
 
-                return token;
+                AddMensagem(Mensagem.Info("Login realizado com sucesso !"));
+
+                return GetReturn(token);
             }
 
-            return string.Empty;
+            return GetReturn();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using projetox.Domain.Base.DTO.Arguments;
 using projetox.Domain.Base.Interfaces.Service;
 using projetox.Repository.Transactions;
 
@@ -12,8 +13,10 @@ namespace projetox.Api.Controllers.Base
         {
             _unitOfWork = unitOfWork;
         }
-        protected IActionResult ResponseAPI(object result, IServiceBase serviceBase)
+        protected IActionResult ResponseAPI(ResponseBaseDTO result, IServiceBase serviceBase)
         {
+            result.Mensagens = serviceBase.GetMensagensDTO();
+
             if (serviceBase.Valido())
             {
                 try
