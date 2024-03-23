@@ -5,6 +5,7 @@ using projetox.Domain.Autenticacao.Interfaces.Service;
 using projetox.Domain.Autenticacao.ValueObjects;
 using projetox.Domain.Base.DTO.Arguments;
 using projetox.Domain.Base.Service;
+using projetox.Domain.Base.ValueObjects;
 using projetox.Domain.Notification.DTO;
 using projetox.Domain.Notification.Entidades;
 

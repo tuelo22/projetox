@@ -11,4 +11,10 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Interfaces\" />
+    <Folder Include="Core\Enumerados\" />
+    <Folder Include="Core\Services\" />
+  </ItemGroup>
+
 </Project>

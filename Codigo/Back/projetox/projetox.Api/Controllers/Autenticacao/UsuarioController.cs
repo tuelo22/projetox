@@ -2,7 +2,6 @@
 using projetox.Api.Controllers.Base;
 using projetox.Domain.Autenticacao.DTO.Arguments.Token;
 using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
-using projetox.Domain.Autenticacao.Entidades;
 using projetox.Domain.Autenticacao.Interfaces.Service;
 using projetox.Domain.Base.DTO.Arguments;
 using projetox.Repository.Transactions;
@@ -80,6 +79,8 @@ namespace projetox.Api.Controllers.Autenticacao
         /// </remarks>
         /// <param name="email">E-mail do usuario.</param>
         [HttpPost("EsqueciMinhaSenha")]
+        [ProducesResponseType(typeof(ResponseBaseDTO), 200)]
+        [ProducesResponseType(typeof(ResponseBaseDTO), 400)]
         public IActionResult EsqueciMinhaSenha(string email)
         {
             try

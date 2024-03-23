@@ -1,28 +1,22 @@
-﻿using projetox.Domain.Notification.Entidades;
-using System.Text.RegularExpressions;
+﻿using projetox.Domain.Base.Extends;
+using projetox.Domain.Notification.Entidades;
 
-namespace projetox.Domain.Autenticacao.ValueObjects
+namespace projetox.Domain.Base.ValueObjects
 {
     public class Documento : Notificavel
     {
+        public string Numero { get; set; }
 
-        public String Numero { get; set; }
-
-        public Documento()
+        public Documento(string numero)
         {
-            Numero = String.Empty;
-        }
-
-        public Documento(String numero)
-        {
-            if (String.IsNullOrEmpty(numero))
+            if (string.IsNullOrEmpty(numero))
             {
-                Numero = String.Empty;
+                Numero = string.Empty;
                 AddMensagem(Mensagem.Error("É obrigatório informar o número do documento (CPF ou CNPJ)."));
             }
             else
             {
-                Numero = RemoverCaracteresEspeciais(numero);
+                Numero = numero.RetornaApenasNumeros();
 
                 if (Numero.Length == 11)
                 {
@@ -40,7 +34,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
                 }
             }
 
-            if (Valido() && String.IsNullOrEmpty(Numero))
+            if (Valido() && string.IsNullOrEmpty(Numero))
             {
                 AddMensagem(Mensagem.Error("Documento inválido, por favor verificar."));
             }
@@ -61,9 +55,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
             return string.Empty;
         }
 
-        static string RemoverCaracteresEspeciais(string input) => new Regex("[^0-9]").Replace(input, string.Empty);
-
-        static bool ValidarCPF(string cpf)
+        private static bool ValidarCPF(string cpf)
         {
             int[] multiplicadores1 = [10, 9, 8, 7, 6, 5, 4, 3, 2];
             int[] multiplicadores2 = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
@@ -103,7 +95,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
             return cpf.EndsWith(digito);
         }
 
-        static bool ValidarCNPJ(string cnpj)
+        private static bool ValidarCNPJ(string cnpj)
         {
             int[] multiplicadores1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
             int[] multiplicadores2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
@@ -119,7 +111,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
             for (int i = 0; i < 12; i++)
                 soma += int.Parse(tempCnpj[i].ToString()) * multiplicadores1[i];
 
-            int resto = (soma % 11);
+            int resto = soma % 11;
 
             if (resto < 2)
                 resto = 0;
@@ -133,7 +125,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
             for (int i = 0; i < 13; i++)
                 soma += int.Parse(tempCnpj[i].ToString()) * multiplicadores2[i];
 
-            resto = (soma % 11);
+            resto = soma % 11;
 
             if (resto < 2)
                 resto = 0;

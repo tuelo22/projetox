@@ -8,6 +8,7 @@ namespace projetox.Repository.Autenticacao.Mapping
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
+
             builder.ToTable(nameof(Usuario));
 
             builder.HasKey(x => x.Id);
