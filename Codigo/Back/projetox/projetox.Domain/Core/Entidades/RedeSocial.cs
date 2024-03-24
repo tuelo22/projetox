@@ -3,7 +3,7 @@ using projetox.Domain.Notification.Entidades;
 
 namespace projetox.Domain.Core.Entidades
 {
-    public class RedeSocial : PersistenceEntity
+    public class RedeSocial : BaseEntity
     {
         public string Nome { get; set; }
         public string URLPerfil { get; set; }

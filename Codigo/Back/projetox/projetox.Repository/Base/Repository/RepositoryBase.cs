@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 namespace projetox.Repository.Base.Repository
 {
     public class RepositoryBase<TEntidade, TId> : IRepositoryBase<TEntidade, TId>
-            where TEntidade : PersistenceEntity
+            where TEntidade : BaseEntity
             where TId : struct
     {
         private readonly DbContext _context;

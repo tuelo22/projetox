@@ -2,11 +2,11 @@
 
 namespace projetox.Domain.Base.Entidades
 {
-    public abstract class PersistenceEntity : Notificavel, IDisposable
+    public abstract class BaseEntity : Notificavel, IDisposable
     {
         public Guid Id { get; set; }
 
-        protected PersistenceEntity()
+        protected BaseEntity()
         {
             Id = Guid.NewGuid();
         }

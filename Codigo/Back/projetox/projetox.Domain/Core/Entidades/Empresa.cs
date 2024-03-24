@@ -6,7 +6,7 @@ using projetox.Domain.Notification.Entidades;
 
 namespace projetox.Domain.Core.Entidades
 {
-    public class Empresa : PersistenceEntity
+    public class Empresa : BaseEntity
     {
         public Empresa(Usuario usuario, Documento documento, 
             NaturezaJuridica naturezaJuridica, Endereco endereco, 

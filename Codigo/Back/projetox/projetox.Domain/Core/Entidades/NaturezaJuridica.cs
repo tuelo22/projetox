@@ -3,7 +3,7 @@ using projetox.Domain.Notification.Entidades;
 
 namespace projetox.Domain.Core.Entidades
 {
-    public class NaturezaJuridica : PersistenceEntity
+    public class NaturezaJuridica : BaseEntity
     {
         public required String Descricao { get; set; }
 

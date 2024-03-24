@@ -68,7 +68,7 @@
         </member>
         <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.Cadastrar(projetox.Domain.Autenticacao.DTO.Arguments.Usuario.NovoUsuarioDTO)">
             <summary>
-            Cadastro de usuarios
+            Cadastrar usuarios
             </summary>
             <remarks>
             Cadastro um novo usuario

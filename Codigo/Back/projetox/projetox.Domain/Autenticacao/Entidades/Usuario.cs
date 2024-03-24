@@ -5,7 +5,7 @@ using projetox.Domain.Notification.Entidades;
 
 namespace projetox.Domain.Autenticacao.Entidades
 {
-    public class Usuario : PersistenceEntity
+    public class Usuario : BaseEntity
     {
         public Nome Nome { get; private set; }
         public Documento Documento { get; private set; }
