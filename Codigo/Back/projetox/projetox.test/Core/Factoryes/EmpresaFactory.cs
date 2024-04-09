@@ -1,9 +1,9 @@
 ﻿using projetox.Domain.Base.ValueObjects;
 using projetox.Domain.Core.Entidades;
 using projetox.Domain.Core.ValueObjects;
-using projetox.test.Autenticacao.Domain.Factoryes;
+using projetox.test.Autenticacao.Factoryes;
 
-namespace projetox.test.Core.Domain.Factoryes
+namespace projetox.test.Core.Factoryes
 {
     public static class EmpresaFactory
     {

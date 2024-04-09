@@ -3,7 +3,7 @@ using projetox.Domain.Autenticacao.ValueObjects;
 using projetox.Domain.Base.ValueObjects;
 using projetox.Domain.Core.ValueObjects;
 
-namespace projetox.test.Autenticacao.Domain.Factoryes
+namespace projetox.test.Autenticacao.Factoryes
 {
     public static class UsuarioFactory
     {

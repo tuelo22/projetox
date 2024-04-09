@@ -1,6 +1,6 @@
 ﻿using projetox.Domain.Autenticacao.ValueObjects;
 
-namespace projetox.test.Autenticacao.Domain.ValueObjects
+namespace projetox.test.Autenticacao.ValueObjects
 {
     public class NomeTest
     {

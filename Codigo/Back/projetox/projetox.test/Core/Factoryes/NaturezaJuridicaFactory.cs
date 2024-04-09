@@ -1,6 +1,6 @@
 ﻿using projetox.Domain.Core.Entidades;
 
-namespace projetox.test.Core.Domain.Factoryes
+namespace projetox.test.Core.Factoryes
 {
     public static class NaturezaJuridicaFactory
     {

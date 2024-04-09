@@ -7,12 +7,6 @@ namespace projetox.Domain.Autenticacao.ValueObjects
         public Boolean Confirmado { get; set; }
         public string Endereco { get; set; }
 
-        public Email()
-        { 
-            Endereco = string.Empty;
-            Confirmado = false;
-        }
-
         public Email(string endereco)
         {
             Confirmado = false;

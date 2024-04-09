@@ -1,5 +1,4 @@
-﻿using projetox.Domain.Autenticacao.Services;
-using projetox.Domain.Notification.Entidades;
+﻿using projetox.Domain.Notification.Entidades;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -25,7 +24,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
         {
             if (!ValidarSenha(senha))
             {
-                AddMensagem(Mensagem.Error("Senha fora do padrão, por favor verificar."));
+                AddMensagem(Mensagem.Error("A senha não atende aos requisitos necessários, por favor verificar."));
 
                 return senha;
             }
@@ -39,6 +38,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
             return $"{builder}{IDSENHA}";
         }
 
+        // A senha deve ter mais de 8 caracteres e possuir um caracter especial.
         private static bool ValidarSenha(string valor)
         {            
             if (valor.Length < 8)
@@ -83,7 +83,5 @@ namespace projetox.Domain.Autenticacao.ValueObjects
             }
             return new string(senhaArray);
         }
-
-
     }
 }
