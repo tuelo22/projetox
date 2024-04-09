@@ -61,7 +61,7 @@
             Controlador de usuarios nao autenticados
             </summary>
         </member>
-        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Autenticacao.Interfaces.Service.IRegistrarUsuarioService,projetox.Domain.Autenticacao.Interfaces.Service.IResetarSenhaUsuario,projetox.Domain.Autenticacao.Interfaces.Service.ITokenService)">
+        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Autenticacao.Interfaces.Services.IRegistrarUsuarioService,projetox.Domain.Autenticacao.Interfaces.Services.IResetarSenhaUsuario,projetox.Domain.Autenticacao.Interfaces.Services.ITokenService)">
             <summary>
             Controlador de usuarios nao autenticados
             </summary>
@@ -92,6 +92,85 @@
             Reseta a senha do usuario e envia um email com a nova senha gerada dinamicamente. 
             </remarks>
             <param name="email">E-mail do usuario.</param>
+        </member>
+        <member name="T:projetox.Api.Controllers.Base.ControllerAPIBase">
+            <summary>
+            Classe controller basica, todo controlle deve herdade dela.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Base.ControllerAPIBase.#ctor(projetox.Repository.Transactions.IUnitOfWork)">
+            <summary>
+            Classe controller basica, todo controlle deve herdade dela.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Base.ControllerAPIBase.ResponseAPI(projetox.Domain.Base.DTO.Arguments.ResponseBaseDTO,projetox.Domain.Base.Interfaces.Services.IServiceBase)">
+            <summary>
+            Método de resposta padrão.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Base.ControllerAPIBase.ResponseAPIException(System.Exception)">
+            <summary>
+            Response em caso de excessão.
+            </summary>
+        </member>
+        <member name="T:projetox.Api.Controllers.Core.EmpresaController">
+            <summary>
+            Empresa
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.EmpresaController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Core.Interfaces.Services.IEmpresaService)">
+            <summary>
+            Empresa
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.EmpresaController.Cadastrar(System.Guid,projetox.Domain.Core.DTO.EmpresaDTO)">
+            <summary>
+            Cadastrar empresa
+            </summary>
+            <remarks>
+            Cadastro da empresa
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="dto">Dados da empresa</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.EmpresaController.Listar(System.Guid)">
+            <summary>
+            Listar empresas do usuario
+            </summary>
+            <remarks>
+            Listar empresas do usuario
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.EmpresaController.Deletar(System.Guid,System.Guid)">
+            <summary>
+            Deletar empresa
+            </summary>
+            <remarks>
+            Deletar empresa
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="IdEmpresa">Identificador da Empresa</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.EmpresaController.Atualizar(System.Guid,projetox.Domain.Core.DTO.EmpresaDTO)">
+            <summary>
+            Atualizar empresa
+            </summary>
+            <remarks>
+            Atualizar da empresa
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="dto">Dados da empresa</param>
+        </member>
+        <member name="T:projetox.Api.Extensoes.InjecaoDependencia">
+            <summary>
+            Classe extatica de extenção para injeção de dependencia.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Extensoes.InjecaoDependencia.AddInjecaoDependencia(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Método de extenção para injeção de dependencia.
+            </summary>
         </member>
     </members>
 </doc>

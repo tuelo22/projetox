@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using projetox.Domain.Base.Entidades;
-using projetox.Domain.Base.Interfaces.Repository;
+using projetox.Domain.Base.Interfaces.Repositories;
 using System.Linq.Expressions;
 
 namespace projetox.Repository.Base.Repository

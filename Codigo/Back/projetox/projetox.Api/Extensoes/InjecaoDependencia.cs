@@ -1,23 +1,39 @@
-﻿using projetox.Domain.Autenticacao.Interfaces.Repository;
-using projetox.Domain.Autenticacao.Interfaces.Service;
+﻿using projetox.Domain.Autenticacao.Interfaces.Repositories;
+using projetox.Domain.Autenticacao.Interfaces.Services;
 using projetox.Domain.Autenticacao.Services;
-using projetox.Domain.Base.Interfaces.Repository;
-using projetox.Repository.Autenticacao.Repository;
+using projetox.Domain.Base.Interfaces.Repositories;
+using projetox.Domain.Core.Interfaces.Repositories;
+using projetox.Domain.Core.Interfaces.Services;
+using projetox.Domain.Core.Services;
+using projetox.Repository.Autenticacao.Repositories;
 using projetox.Repository.Base.Repository;
+using projetox.Repository.Core.Repositories;
 using projetox.Repository.Transactions;
 
 namespace projetox.Api.Extensoes
 {
+    /// <summary>
+    /// Classe extatica de extenção para injeção de dependencia.
+    /// </summary>
     public static class InjecaoDependencia
     {
+        /// <summary>
+        /// Método de extenção para injeção de dependencia.
+        /// </summary>
         public static void AddInjecaoDependencia(this IServiceCollection services) 
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped(typeof(IRepositoryBase<,>), typeof(RepositoryBase<,>));
+
+            // Repository
+            services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
+            services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+            services.AddScoped<INaturezaJuridicaRepository, NaturezaJuridicaRepository>();
+            //Service
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IRegistrarUsuarioService, RegistrarUsuarioService>();
             services.AddScoped<IResetarSenhaUsuario, ResetarSenhaUsuario>();
-            services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped(typeof(IRepositoryBase<,>), typeof(RepositoryBase<,>));
+            services.AddScoped<IEmpresaService, EmpresaService>();
         }
     }
 }

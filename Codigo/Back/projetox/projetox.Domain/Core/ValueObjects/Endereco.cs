@@ -1,6 +1,8 @@
-﻿namespace projetox.Domain.Core.ValueObjects
+﻿using projetox.Domain.Notification.Entidades;
+
+namespace projetox.Domain.Core.ValueObjects
 {
-    public class Endereco
+    public class Endereco : Notificavel
     {
         public string Logradouro { get; set; }
         public string Numero { get; set; }
@@ -10,8 +12,6 @@
         public string Estado { get; set; }
         public string CEP { get; set; }
         public string CodIBGE { get; set; }
-
-        public Endereco() { }
 
         public Endereco(string logradouro, string numero, string? complemento, string bairro, string cidade, string estado, string cep, string codIBGE)
         {

@@ -12,9 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Interfaces\" />
     <Folder Include="Core\Enumerados\" />
-    <Folder Include="Core\Services\" />
   </ItemGroup>
 
 </Project>

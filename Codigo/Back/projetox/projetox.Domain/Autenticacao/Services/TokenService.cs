@@ -2,11 +2,10 @@
 using Microsoft.IdentityModel.Tokens;
 using projetox.Domain.Autenticacao.DTO.Arguments.Token;
 using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
-using projetox.Domain.Autenticacao.Interfaces.Repository;
-using projetox.Domain.Autenticacao.Interfaces.Service;
+using projetox.Domain.Autenticacao.Interfaces.Repositories;
+using projetox.Domain.Autenticacao.Interfaces.Services;
 using projetox.Domain.Autenticacao.ValueObjects;
 using projetox.Domain.Base.Service;
-using projetox.Domain.Notification.DTO;
 using projetox.Domain.Notification.Entidades;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

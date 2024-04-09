@@ -9,10 +9,10 @@ namespace projetox.Domain.Core.Entidades
         public string URLPerfil { get; set; }
         public Empresa Empresa { get; set; }
 
-        public RedeSocial() { }
-
-        public RedeSocial(string nome, string uRLPerfil, Empresa empresa)
+        public RedeSocial(Guid? id, string nome, string uRLPerfil, Empresa empresa)
         {
+            Id = id ?? Guid.NewGuid();
+
             Nome = nome;
 
             if (String.IsNullOrEmpty(nome))

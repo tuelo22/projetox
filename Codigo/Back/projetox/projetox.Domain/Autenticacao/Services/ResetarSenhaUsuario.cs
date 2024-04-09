@@ -1,4 +1,4 @@
-﻿using projetox.Domain.Autenticacao.Interfaces.Service;
+﻿using projetox.Domain.Autenticacao.Interfaces.Services;
 using projetox.Domain.Base.DTO.Arguments;
 using projetox.Domain.Base.Service;
 using projetox.Domain.Notification.Entidades;

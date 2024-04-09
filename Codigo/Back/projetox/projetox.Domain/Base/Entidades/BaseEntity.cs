@@ -4,12 +4,7 @@ namespace projetox.Domain.Base.Entidades
 {
     public abstract class BaseEntity : Notificavel, IDisposable
     {
-        public Guid Id { get; set; }
-
-        protected BaseEntity()
-        {
-            Id = Guid.NewGuid();
-        }
+        public Guid Id { get; protected set; }
 
         public void Dispose()
         {

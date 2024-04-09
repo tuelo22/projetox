@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace projetox.Domain.Base.Interfaces.Repository
+namespace projetox.Domain.Base.Interfaces.Repositories
 {
     public interface IRepositoryBase<TEntidade, TId>
            where TEntidade : class

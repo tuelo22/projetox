@@ -1,58 +1,68 @@
 ﻿using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
 using projetox.Domain.Autenticacao.Entidades;
-using projetox.Domain.Autenticacao.Interfaces.Repository;
-using projetox.Domain.Autenticacao.Interfaces.Service;
+using projetox.Domain.Autenticacao.Interfaces.Repositories;
+using projetox.Domain.Autenticacao.Interfaces.Services;
 using projetox.Domain.Autenticacao.ValueObjects;
 using projetox.Domain.Base.DTO.Arguments;
 using projetox.Domain.Base.Service;
 using projetox.Domain.Base.ValueObjects;
-using projetox.Domain.Notification.DTO;
+using projetox.Domain.Core.ValueObjects;
 using projetox.Domain.Notification.Entidades;
 
 namespace projetox.Domain.Autenticacao.Services
 {
-    public class RegistrarUsuarioService : ServiceBase, IRegistrarUsuarioService
+    public class RegistrarUsuarioService(IRepositoryUsuario repositoryUsuario) : ServiceBase, IRegistrarUsuarioService
     {
-        private readonly IRepositoryUsuario _repositoryUsuario;
-
-        public RegistrarUsuarioService(IRepositoryUsuario repositoryUsuario)
-        {
-            _repositoryUsuario = repositoryUsuario;
-        }
-
-        public ResponseBaseDTO Registrar(NovoUsuarioDTO usuarioDTO)
+        public ResponseBaseDTO Registrar(NovoUsuarioDTO dto)
         {           
-            Nome nome = new (usuarioDTO.PrimeiroNome, usuarioDTO.Sobrenome);
+            Nome nome = new (dto.PrimeiroNome, dto.Sobrenome);
             AddMensagens(nome);
 
-            Documento documento = new (usuarioDTO.NumeroDocumento);
+            Documento documento = new (dto.NumeroDocumento);
             AddMensagens(documento);
 
-            Email email = new (usuarioDTO.Email);
+            Email email = new (dto.Email);
             AddMensagens(email);
 
-            Senha senha = new(usuarioDTO.Senha);
+            Senha senha = new(dto.Senha);
             AddMensagens(senha);
 
-            Usuario usuario = new(nome, documento, email, senha, usuarioDTO.Telefone);
-            AddMensagens(usuario);
+            Telefone telefone = new(dto.Telefone);
+            AddMensagens(telefone);
 
-            if(usuarioDTO.Senha != usuarioDTO.ConfirmacaoSenha)
+            if(dto.Senha != dto.ConfirmacaoSenha)
             {
                 AddMensagem(Mensagem.Error("As senhas estão divergentes."));
             }
 
-            if (Valido())
-            {
-                _repositoryUsuario.Adicionar(usuario);
+            Usuario? usuario = repositoryUsuario.ObterPor(x => x.Email.Endereco.Equals(dto.Email, StringComparison.CurrentCultureIgnoreCase));
 
-                AddMensagem(Mensagem.Info("Usuário cadastrado com sucesso !"));
+            if(usuario != null)
+            {
+                AddMensagem(Mensagem.Error("O e-mail informado já está sendo utiliado por outro usuário."));
             }
 
-            return new ResponseBaseDTO()
+            usuario = repositoryUsuario.ObterPor(x => x.Documento.Numero.Equals(dto.NumeroDocumento, StringComparison.CurrentCultureIgnoreCase));
+
+            if (usuario != null)
             {
-                Mensagens = GetMensagens().ToList().Select(x => (MensagemDTO)x).ToList(),
-            };
+                AddMensagem(Mensagem.Error("O documento informado já está sendo utiliado por outro usuário."));
+            }
+
+            if (Valido())
+            {
+                usuario = new(Guid.NewGuid(), nome, documento, email, senha, telefone);
+                AddMensagens(usuario);
+
+                if (Valido())
+                {
+                    repositoryUsuario.Adicionar(usuario);
+
+                    AddMensagem(Mensagem.Info("Usuário cadastrado com sucesso !"));
+                }
+            }
+
+            return GetRetorno();
         }
     }
 }
