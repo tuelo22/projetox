@@ -4,38 +4,29 @@ using System.ComponentModel.DataAnnotations;
 namespace projetox.Domain.Core.DTO
 {
     /// <summary>
-    /// Rede social da empresa.
+    /// Fonte de receita da empresa.
     /// </summary>
-    public struct RedeSocialDTO
+    public struct FonteReceitaDTO
     {
         /// <summary>
         /// Identificador.
         /// </summary>
         public Guid Id { get; set; }
-
         /// <summary>
-        /// Nome da rede social.
+        /// Descrição
         /// </summary>
         [Required]
-        public string Nome { get; set; }
-
-        /// <summary>
-        /// URL do perfil na rede social.
-        /// </summary>
-        [Required]
-        public string URLPerfil { get; set; }
-
+        public String Descricao { get; set; }
         /// <summary>
         /// Conversão da classe concreta para o DTO.
         /// </summary>
         /// <param name="entidade"></param>
-        public static explicit operator RedeSocialDTO(RedeSocial entidade)
+        public static explicit operator FonteReceitaDTO(FonteReceita entidade)
         {
-            return new RedeSocialDTO()
+            return new FonteReceitaDTO()
             {
                 Id = entidade.Id,
-                Nome = entidade.Nome,
-                URLPerfil = entidade.URLPerfil,
+                Descricao = entidade.Descricao,
             };
         }
     }

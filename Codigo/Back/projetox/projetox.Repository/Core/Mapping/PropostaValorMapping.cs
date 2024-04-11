@@ -14,6 +14,8 @@ namespace projetox.Repository.Core.Mapping
             builder.Property(x => x.DescricaoNegocio).IsRequired().HasMaxLength(100);
             builder.Property(x => x.FazerNegocio).IsRequired().HasMaxLength(100);
             builder.HasOne(x => x.Empresa).WithMany(y => y.PropostasValor).IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+
         }
     }
 }

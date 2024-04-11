@@ -28,23 +28,37 @@ namespace projetox.Domain.Core.Entidades
         /// <param name="empresa"></param>
         public PropostaValor(String descricaoNegocio, String fazerNegocio, Empresa empresa)
         {
-            DescricaoNegocio = descricaoNegocio;
-            FazerNegocio = fazerNegocio;
             Empresa = empresa;
 
-            if (String.IsNullOrEmpty(DescricaoNegocio))
-            {
-                AddMensagem(Mensagem.Error("É obrigatório informar a descrição de negócio."));
-            }
+            SetDescricaoNegocio(descricaoNegocio);
+            SetFazerNegocio(fazerNegocio);
+        }
+
+        private void SetFazerNegocio(String fazerNegocio)
+        {
+            FazerNegocio = fazerNegocio;
 
             if (String.IsNullOrEmpty(FazerNegocio))
             {
                 AddMensagem(Mensagem.Error("É obrigatório informar a descrição fazer negócio."));
             }
         }
-          
-        public void AddRelacionamentoCliente(List<RelacionamentoCliente> lista) => lista.ForEach(x => RelacionamentoClientes.Add(x));
 
+        private void SetDescricaoNegocio(String descricaoNegocio)
+        {
+            DescricaoNegocio = descricaoNegocio;
+
+            if (String.IsNullOrEmpty(DescricaoNegocio))
+            {
+                AddMensagem(Mensagem.Error("É obrigatório informar a descrição de negócio."));
+            }
+        }
+
+        public void AtualizarDescricaoNegocio(string descricaoNegocio) => SetDescricaoNegocio(descricaoNegocio);
+        public void AtualizarFazerNegocio(string fazerNegocio) => SetFazerNegocio(fazerNegocio);
+
+        public void AddRelacionamentoCliente(List<RelacionamentoCliente> lista) => lista.ForEach(x => RelacionamentoClientes.Add(x));
+        public void AddRelacionamentoCliente(RelacionamentoCliente item) => RelacionamentoClientes.Add(item);
         public void AtualizarRelacionamentoCliente(List<RelacionamentoCliente> lista)
         {
             RelacionamentoClientes.Clear();
@@ -52,7 +66,7 @@ namespace projetox.Domain.Core.Entidades
         }
 
         public void AddCanalDistribuicaoOpcoes(List<CanalDistribuicaoOpcao> lista) => lista.ForEach(x => CanalDistribuicaoOpcoes.Add(x));
-
+        public void AddCanalDistribuicaoOpcoes(CanalDistribuicaoOpcao item) => CanalDistribuicaoOpcoes.Add(item);
         public void AtualizarCanalDistribuicaoOpcoes(List<CanalDistribuicaoOpcao> lista)
         {
             CanalDistribuicaoOpcoes.Clear();
@@ -60,19 +74,11 @@ namespace projetox.Domain.Core.Entidades
         }
 
         public void AddFontesReceita(List<FonteReceita> lista) => lista.ForEach(x => FontesReceita.Add(x));
-
+        public void AddFontesReceita(FonteReceita item) => FontesReceita.Add(item);
         public void AtualizarFontesReceita(List<FonteReceita> lista)
         {
             FontesReceita.Clear();
             AddFontesReceita(lista);
-        }
-
-        public void AddSegmentoCliente(List<SegmentoCliente> lista) => lista.ForEach(x => SegmentosClientes.Add(x));
-
-        public void AtualizarSegmentoCliente(List<SegmentoCliente> lista)
-        {
-            SegmentosClientes.Clear();
-            AddSegmentoCliente(lista);
         }
     }
 }

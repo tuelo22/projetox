@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace projetox.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class inicio : Migration
+    public partial class _001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -166,21 +166,21 @@ namespace projetox.Repository.Migrations
                 name: "CanalDistribuicaoOpcaoPropostaValor",
                 columns: table => new
                 {
-                    CanalDistribuicaoOpcoesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PropostasValorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CanalDistribuicaoOpcaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PropostaValorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CanalDistribuicaoOpcaoPropostaValor", x => new { x.CanalDistribuicaoOpcoesId, x.PropostasValorId });
+                    table.PrimaryKey("PK_CanalDistribuicaoOpcaoPropostaValor", x => new { x.CanalDistribuicaoOpcaoId, x.PropostaValorId });
                     table.ForeignKey(
-                        name: "FK_CanalDistribuicaoOpcaoPropostaValor_CanalDistribuicaoOpcao_CanalDistribuicaoOpcoesId",
-                        column: x => x.CanalDistribuicaoOpcoesId,
+                        name: "FK_CanalDistribuicaoOpcaoPropostaValor_CanalDistribuicaoOpcao_CanalDistribuicaoOpcaoId",
+                        column: x => x.CanalDistribuicaoOpcaoId,
                         principalTable: "CanalDistribuicaoOpcao",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CanalDistribuicaoOpcaoPropostaValor_PropostaValor_PropostasValorId",
-                        column: x => x.PropostasValorId,
+                        name: "FK_CanalDistribuicaoOpcaoPropostaValor_PropostaValor_PropostaValorId",
+                        column: x => x.PropostaValorId,
                         principalTable: "PropostaValor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -341,9 +341,9 @@ namespace projetox.Repository.Migrations
                 column: "SegmentoClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CanalDistribuicaoOpcaoPropostaValor_PropostasValorId",
+                name: "IX_CanalDistribuicaoOpcaoPropostaValor_PropostaValorId",
                 table: "CanalDistribuicaoOpcaoPropostaValor",
-                column: "PropostasValorId");
+                column: "PropostaValorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Empresa_NaturezaJuridicaId",

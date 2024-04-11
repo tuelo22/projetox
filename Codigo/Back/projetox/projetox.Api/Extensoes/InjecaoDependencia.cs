@@ -29,11 +29,17 @@ namespace projetox.Api.Extensoes
             services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<INaturezaJuridicaRepository, NaturezaJuridicaRepository>();
+            services.AddScoped<ICanalDistribuicaoOpcaoRepository, CanalDistribuicaoOpcaoRepository>();
+            services.AddScoped<IPropostaValorRepository, PropostaValorRepository>();
+            services.AddScoped<ISegmentoClienteRepository, SegmentoClienteRepository>();
+
             //Service
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IRegistrarUsuarioService, RegistrarUsuarioService>();
             services.AddScoped<IResetarSenhaUsuario, ResetarSenhaUsuario>();
             services.AddScoped<IEmpresaService, EmpresaService>();
+            services.AddScoped<IPropostaValorService, PropostaValorService>();
+            services.AddScoped<ISegmentoClienteService, SegmentoClienteService>();
         }
     }
 }

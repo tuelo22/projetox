@@ -129,8 +129,8 @@ internal class Program
         builder.Services.AddInjecaoDependencia();
         builder.Services.AddDbContext<XContext>(c =>
         {
-            c.UseSqlServer(builder.Configuration.GetConnectionString("ProjetoXConnection"));
-
+            c.UseLazyLoadingProxies()
+            .UseSqlServer(builder.Configuration.GetConnectionString("ProjetoXConnection"));
         });
 
         var app = builder.Build();

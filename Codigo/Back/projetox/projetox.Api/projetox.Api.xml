@@ -113,6 +113,28 @@
             Response em caso de excessão.
             </summary>
         </member>
+        <member name="T:projetox.Api.Controllers.Core.CanalDistribuicaoOpcaoController">
+            <summary>
+            Opções de canal de distribuição.
+            </summary>
+            <param name="unitOfWork"></param>
+            <param name="_CanalDistribuicaoOpcaoService"></param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.CanalDistribuicaoOpcaoController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Core.Interfaces.Services.ICanalDistribuicaoOpcaoService)">
+            <summary>
+            Opções de canal de distribuição.
+            </summary>
+            <param name="unitOfWork"></param>
+            <param name="_CanalDistribuicaoOpcaoService"></param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.CanalDistribuicaoOpcaoController.Listar">
+            <summary>
+            Listar os canais de distribuição pré-cadastrados.
+            </summary>
+            <remarks>
+            Listar os canais de distribuição pré-cadastrados.
+            </remarks>
+        </member>
         <member name="T:projetox.Api.Controllers.Core.EmpresaController">
             <summary>
             Empresa
@@ -161,6 +183,106 @@
             </remarks>
             <param name="IdUsuario">Identificador do Usuario</param>
             <param name="dto">Dados da empresa</param>
+        </member>
+        <member name="T:projetox.Api.Controllers.Core.PropostaValorController">
+            <summary>
+            Proposta de valor.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.PropostaValorController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Core.Interfaces.Services.IPropostaValorService)">
+            <summary>
+            Proposta de valor.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.PropostaValorController.Cadastrar(System.Guid,projetox.Domain.Core.DTO.PropostaValorDTO)">
+            <summary>
+            Cadastrar proposta de valor
+            </summary>
+            <remarks>
+            Cadastro de proposta de valor
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="dto">Dados da proposta de valor</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.PropostaValorController.Listar(System.Guid,System.Guid)">
+            <summary>
+            Listar propostas de valor da empresa
+            </summary>
+            <remarks>
+            Listar propostas de valor da empresa
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="IdEmpresa">Identificador da Empresa</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.PropostaValorController.Deletar(System.Guid,System.Guid)">
+            <summary>
+            Deletar empresa
+            </summary>
+            <remarks>
+            Deletar empresa
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="IdPropostaValor">Identificador da proposta de valor</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.PropostaValorController.Atualizar(System.Guid,projetox.Domain.Core.DTO.PropostaValorDTO)">
+            <summary>
+            Atualizar proposta de valor.
+            </summary>
+            <remarks>
+            Atualizar proposta de valor.
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="dto">Dados da proposta de valor</param>
+        </member>
+        <member name="T:projetox.Api.Controllers.Core.SegmentoClienteController">
+            <summary>
+            Segmento do cliente.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.SegmentoClienteController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Core.Interfaces.Services.ISegmentoClienteService)">
+            <summary>
+            Segmento do cliente.
+            </summary>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.SegmentoClienteController.Cadastrar(System.Guid,projetox.Domain.Core.DTO.SegmentoClienteDTO)">
+            <summary>
+            Cadastrar segmento do cliente.
+            </summary>
+            <remarks>
+            Cadastro de segmento do cliente.
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario.</param>
+            <param name="dto">Dados do segmento do cliente.</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.SegmentoClienteController.Listar(System.Guid,System.Guid)">
+            <summary>
+            Listar segmento do cliente.
+            </summary>
+            <remarks>
+            Listar segmento do cliente com base na proposta de valor.
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario.</param>
+            <param name="IdPropostaValor">Identificador da proposta de valor.</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.SegmentoClienteController.Deletar(System.Guid,System.Guid)">
+            <summary>
+            Deletar segmento do cliente.
+            </summary>
+            <remarks>
+            Deletar segmento do cliente.
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario.</param>
+            <param name="IdSegmentoCliente">Identificador do segmento do cliente.</param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.SegmentoClienteController.Atualizar(System.Guid,projetox.Domain.Core.DTO.SegmentoClienteDTO)">
+            <summary>
+            Atualizar segmento do cliente.
+            </summary>
+            <remarks>
+            Atualizar segmento do cliente.
+            </remarks>
+            <param name="IdUsuario">Identificador do Usuario</param>
+            <param name="dto">Dados do segmento do cliente.</param>
         </member>
         <member name="T:projetox.Api.Extensoes.InjecaoDependencia">
             <summary>

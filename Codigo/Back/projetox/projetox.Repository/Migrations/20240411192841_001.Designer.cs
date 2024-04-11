@@ -12,8 +12,8 @@ using projetox.Repository;
 namespace projetox.Repository.Migrations
 {
     [DbContext(typeof(XContext))]
-    [Migration("20240411022958_inicio")]
-    partial class inicio
+    [Migration("20240411192841_001")]
+    partial class _001
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,21 +21,24 @@ namespace projetox.Repository.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("CanalDistribuicaoOpcaoPropostaValor", b =>
                 {
-                    b.Property<Guid>("CanalDistribuicaoOpcoesId")
+                    b.Property<Guid>("CanalDistribuicaoOpcaoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PropostasValorId")
+                    b.Property<Guid>("PropostaValorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("CanalDistribuicaoOpcoesId", "PropostasValorId");
+                    b.HasKey("CanalDistribuicaoOpcaoId", "PropostaValorId");
 
-                    b.HasIndex("PropostasValorId");
+                    b.HasIndex("PropostaValorId");
 
                     b.ToTable("CanalDistribuicaoOpcaoPropostaValor");
                 });
@@ -365,13 +368,13 @@ namespace projetox.Repository.Migrations
                 {
                     b.HasOne("projetox.Domain.Core.Entidades.CanalDistribuicaoOpcao", null)
                         .WithMany()
-                        .HasForeignKey("CanalDistribuicaoOpcoesId")
+                        .HasForeignKey("CanalDistribuicaoOpcaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("projetox.Domain.Core.Entidades.PropostaValor", null)
                         .WithMany()
-                        .HasForeignKey("PropostasValorId")
+                        .HasForeignKey("PropostaValorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

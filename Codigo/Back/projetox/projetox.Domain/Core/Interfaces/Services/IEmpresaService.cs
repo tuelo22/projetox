@@ -9,7 +9,7 @@ namespace projetox.Domain.Core.Interfaces.Services
     {
         ResponseBaseDTO Cadastrar(Guid IdUsuario, EmpresaDTO dto);
 
-        ObterEmpresaPorUsuarioResponseDTO Listar(Guid IdUsuario);
+        ListarEmpresaResponseDTO Listar(Guid IdUsuario);
 
         ResponseBaseDTO Deletar(Guid IdUsuario, Guid IdEmpresa);
 

@@ -76,7 +76,7 @@ namespace projetox.Domain.Core.Services
             return GetRetorno();
         }
 
-        public ObterEmpresaPorUsuarioResponseDTO Listar(Guid IdUsuario)
+        public ListarEmpresaResponseDTO Listar(Guid IdUsuario)
         {
             var empresas = empresaRepository.Listar(empresa => empresa.Usuarios.Any(usuraio => usuraio.Id == IdUsuario)).ToList();
             var dto = empresas.Select(x => (EmpresaDTO)x).ToList();
@@ -86,7 +86,7 @@ namespace projetox.Domain.Core.Services
                 AddMensagem(Mensagem.Info("O filtro informado não retornou dados."));
             }
 
-            return new ObterEmpresaPorUsuarioResponseDTO
+            return new ListarEmpresaResponseDTO
             {
                 Mensagens = GetMensagensDTO(),
                 Empresas = dto
@@ -194,7 +194,7 @@ namespace projetox.Domain.Core.Services
                     empresaRepository.Remover(empresa);
                 }
 
-                AddMensagem(Mensagem.Error("Empresa deletada com sucesso !"));
+                AddMensagem(Mensagem.Info("Empresa deletada com sucesso !"));
             }
 
             return GetRetorno();
