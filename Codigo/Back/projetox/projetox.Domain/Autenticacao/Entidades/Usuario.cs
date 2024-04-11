@@ -15,14 +15,21 @@ namespace projetox.Domain.Autenticacao.Entidades
         public Telefone Telefone { get; private set; }
         public virtual ICollection<Empresa> Empresas { get; } = [];
 
-        public Usuario(Guid? id, Nome nome, Documento documento, Email email, Senha senha, Telefone telefone)
+        /// <summary>
+        /// Construtor do Entity.
+        /// </summary>
+        public Usuario(){}
+
+        /// <summary>
+        /// Construtor principal.
+        /// </summary>
+        public Usuario(Nome Nome, Documento Documento, Email Email, Senha Senha, Telefone Telefone)
         {
-            Id = id ?? Guid.NewGuid();
-            Nome = nome;
-            Documento = documento;
-            Email = email;
-            Senha = senha;
-            Telefone = telefone;
+            this.Nome = Nome;
+            this.Documento = Documento;
+            this.Email = Email;
+            this.Senha = Senha;
+            this.Telefone = Telefone;
         }
     }
 }

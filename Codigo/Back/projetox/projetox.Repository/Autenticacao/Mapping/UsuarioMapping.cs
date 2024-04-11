@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using projetox.Domain.Autenticacao.Entidades;
+using projetox.Domain.Autenticacao.ValueObjects;
+using projetox.Domain.Base.ValueObjects;
+using projetox.Domain.Core.ValueObjects;
+using System.Reflection.Metadata;
 
 namespace projetox.Repository.Autenticacao.Mapping
 {
@@ -10,32 +14,34 @@ namespace projetox.Repository.Autenticacao.Mapping
         {
 
             builder.ToTable(nameof(Usuario));
-
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id);
-            builder.OwnsOne(d => d.Nome, c =>
+
+            builder.OwnsOne<Nome>(d => d.Nome, c =>
             {
                 c.Property(x => x.PrimeiroNome).IsRequired().HasMaxLength(50);
                 c.Property(x => x.Sobrenome).IsRequired().HasMaxLength(250);
             });
 
-            builder.OwnsOne(d => d.Documento, c =>
+            builder.OwnsOne<Documento>(d => d.Documento, c =>
             {
                 c.Property(x => x.Numero).IsRequired().HasMaxLength(14);
             });
 
-            builder.OwnsOne(d => d.Email, c =>
+            builder.OwnsOne<Email>(d => d.Email, c =>
             {
                 c.Property(x => x.Endereco).IsRequired().HasMaxLength(50);
                 c.Property(x => x.Confirmado).IsRequired();
             });
 
-            builder.OwnsOne(d => d.Senha, c =>
+            builder.OwnsOne<Senha>(d => d.Senha, c =>
             {
                 c.Property(x => x.Valor).IsRequired().HasMaxLength(500);
             });
 
-            builder.Property(x => x.Telefone).IsRequired().HasMaxLength(25);
+            builder.OwnsOne<Telefone>(d => d.Telefone, c =>
+            {
+                c.Property(x => x.Numero).IsRequired().HasMaxLength(25);
+            });
         }
     }
 }

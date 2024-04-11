@@ -13,7 +13,7 @@ namespace projetox.Repository.Core.Mapping
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(100);
             builder.Property(x => x.URLPerfil).IsRequired().HasMaxLength(500);
-            builder.HasOne(x => x.Empresa).WithMany();
+            builder.HasOne(x => x.Empresa).WithMany(y => y.RedesSociais).IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

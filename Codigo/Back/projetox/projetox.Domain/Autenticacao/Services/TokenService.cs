@@ -13,18 +13,9 @@ using System.Text;
 
 namespace projetox.Domain.Autenticacao.Services
 {
-    public class TokenService : ServiceBase, ITokenService
+    public class TokenService(IConfiguration _Configuration, IRepositoryUsuario _RepositoryUsuario) : ServiceBase, ITokenService
     {
-        private readonly IRepositoryUsuario _RepositoryUsuario;
-        private readonly IConfiguration _Configuration;
-
-        public TokenService(IConfiguration configuration, IRepositoryUsuario repositoryUsuario)
-        {
-            _Configuration = configuration;
-            _RepositoryUsuario = repositoryUsuario;
-        }
-
-        private TokenDTO GetReturn(string? token = null)
+        private static TokenDTO GetReturn(string? token = null)
         {
             return new TokenDTO()
             {
@@ -44,7 +35,7 @@ namespace projetox.Domain.Autenticacao.Services
             Senha senhacriptografada = new(dto?.Senha ?? string.Empty);
             String Login = dto?.Login ?? string.Empty;
 
-            var usuario = _RepositoryUsuario.ListarPor(x => x.Email.Endereco == Login.ToLower() && x.Senha.Valor == senhacriptografada.Valor).FirstOrDefault();
+            var usuario = _RepositoryUsuario.ListarPor(x => x.Email.Endereco.Equals(Login, StringComparison.CurrentCultureIgnoreCase) && x.Senha.Valor == senhacriptografada.Valor).FirstOrDefault();
 
             if (usuario == null)
             {

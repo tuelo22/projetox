@@ -172,5 +172,15 @@
             Método de extenção para injeção de dependencia.
             </summary>
         </member>
+        <member name="P:Program.XmlCommentsFilePathAPI">
+            <summary>
+            Captura o XML com os comentários do projeto API
+            </summary>
+        </member>
+        <member name="P:Program.XmlCommentsFilePathDomain">
+            <summary>
+            Captura o XML com os comentários do projeto domain
+            </summary>
+        </member>
     </members>
 </doc>

@@ -7,6 +7,15 @@ namespace projetox.Domain.Core.ValueObjects
     {
         public String Numero { get; private set; }
 
+        /// <summary>
+        /// Construtor do Entity
+        /// </summary>
+        public Telefone() { }
+
+        /// <summary>
+        /// Construtor padrão.
+        /// </summary>
+        /// <param name="numero"></param>
         public Telefone(String numero)
         {
             Numero = numero.RetornaApenasNumeros();

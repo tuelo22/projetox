@@ -5,12 +5,7 @@ namespace projetox.Domain.Notification.Entidades
 {
     public abstract class Notificavel : INotificavel
     {
-        private List<Mensagem> Mensagens;
-
-        public Notificavel()
-        {
-            Mensagens = new();
-        }
+        private readonly List<Mensagem> Mensagens = [];
 
         public IReadOnlyCollection<Mensagem> GetMensagens() => Mensagens;
 

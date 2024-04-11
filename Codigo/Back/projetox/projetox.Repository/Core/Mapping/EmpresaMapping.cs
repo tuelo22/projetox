@@ -14,12 +14,12 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(Empresa));
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id);
+            builder.Property(x => x.Objetivo).IsRequired().HasMaxLength(255);
             builder.OwnsOne<Documento>(d => d.Documento, c =>
             {
                 c.Property(x => x.Numero).IsRequired().HasMaxLength(14);
             });
-            builder.HasOne(x => x.NaturezaJuridica).WithMany();
+            builder.HasOne(x => x.NaturezaJuridica).WithMany(y =>  y.Empresas);
             builder.OwnsOne<Endereco>(d => d.Endereco, c =>
             {
                 c.Property(x => x.Logradouro).IsRequired().HasMaxLength(255);
@@ -43,9 +43,10 @@ namespace projetox.Repository.Core.Mapping
             builder.HasMany(empresa => empresa.Usuarios)
                    .WithMany(usuario => usuario.Empresas)
                    .UsingEntity("EmpresaUsuario",
-                           l => l.HasOne(typeof(Empresa)).WithMany().HasForeignKey("EmpresaId").HasPrincipalKey(nameof(Empresa.Id)),
-                           r => r.HasOne(typeof(Usuario)).WithMany().HasForeignKey("UsuarioId").HasPrincipalKey(nameof(Usuario.Id)),
+                           l => l.HasOne(typeof(Empresa)).WithMany().HasForeignKey("EmpresaId").HasPrincipalKey(nameof(Empresa.Id)).OnDelete(DeleteBehavior.NoAction),
+                           r => r.HasOne(typeof(Usuario)).WithMany().HasForeignKey("UsuarioId").HasPrincipalKey(nameof(Usuario.Id)).OnDelete(DeleteBehavior.NoAction),
                            j => j.HasKey("EmpresaId", "UsuarioId"));
+
         }
     }
 }

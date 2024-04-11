@@ -4,15 +4,19 @@ namespace projetox.Domain.Autenticacao.ValueObjects
 {
     public class Nome : Notificavel
     {
-        public String PrimeiroNome { get; set; }
-        public String Sobrenome { get; set; }
+        public String PrimeiroNome { get; private set; }
+        public String Sobrenome { get; private set; }
 
-        public Nome()
-        {
-            PrimeiroNome = String.Empty;
-            Sobrenome = String.Empty;
-        }
+        /// <summary>
+        /// Construtor do Entity.
+        /// </summary>
+        public Nome(){}
 
+        /// <summary>
+        /// Construtor principal.
+        /// </summary>
+        /// <param name="primeiroNome"></param>
+        /// <param name="sobrenome"></param>
         public Nome(String primeiroNome, String sobrenome)
         {
             PrimeiroNome = primeiroNome;

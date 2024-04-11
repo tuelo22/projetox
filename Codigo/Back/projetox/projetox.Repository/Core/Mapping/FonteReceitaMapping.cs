@@ -4,14 +4,15 @@ using projetox.Domain.Core.Entidades;
 
 namespace projetox.Repository.Core.Mapping
 {
-    public class NaturezaJuridicaMapping : IEntityTypeConfiguration<NaturezaJuridica>
+    public class FonteReceitaMapping : IEntityTypeConfiguration<FonteReceita>
     {
-        public void Configure(EntityTypeBuilder<NaturezaJuridica> builder)
+        public void Configure(EntityTypeBuilder<FonteReceita> builder)
         {
-            builder.ToTable(nameof(NaturezaJuridica));
+            builder.ToTable(nameof(FonteReceita));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(100);
+            builder.HasOne(x => x.PropostaValor).WithMany(y => y.FontesReceita).IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

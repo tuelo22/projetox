@@ -8,13 +8,17 @@ namespace projetox.Domain.Autenticacao.ValueObjects
     {
         private const string IDSENHA = "57c3504f-61c6-4476-8542-95a48779ff61";
 
-        public string Valor { get; set; }
+        public string Valor { get; private set; }
 
-        public Senha()
-        {
-            Valor = String.Empty;
-        }
+        /// <summary>
+        /// Construtor do Entity
+        /// </summary>
+        public Senha(){}
 
+        /// <summary>
+        /// Construtor padrão.
+        /// </summary>
+        /// <param name="valor"></param>
         public Senha(string valor)
         {
             this.Valor = valor.Contains(IDSENHA) ? valor : CriptografarSenha(valor);
@@ -77,9 +81,7 @@ namespace projetox.Domain.Autenticacao.ValueObjects
             for (int i = 0; i < senhaArray.Length; i++)
             {
                 int randomIndex = random.Next(senhaArray.Length);
-                char temp = senhaArray[i];
-                senhaArray[i] = senhaArray[randomIndex];
-                senhaArray[randomIndex] = temp;
+                (senhaArray[randomIndex], senhaArray[i]) = (senhaArray[i], senhaArray[randomIndex]);
             }
             return new string(senhaArray);
         }

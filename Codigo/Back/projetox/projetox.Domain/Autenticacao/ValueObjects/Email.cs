@@ -4,12 +4,22 @@ namespace projetox.Domain.Autenticacao.ValueObjects
 {
     public class Email : Notificavel
     {
-        public Boolean Confirmado { get; set; }
-        public string Endereco { get; set; }
+        public Boolean Confirmado { get; private set; }
+        public string Endereco { get; private set; }
 
-        public Email(string endereco)
+        /// <summary>
+        /// Construtor do Entity
+        /// </summary>
+        public Email(){}
+
+        /// <summary>
+        /// Construtor padrão.
+        /// </summary>
+        /// <param name="endereco"></param>
+        /// <param name="confirmado"></param>
+        public Email(string endereco, Boolean confirmado = false)
         {
-            Confirmado = false;
+            Confirmado = confirmado;
             Endereco = endereco.ToLower();
 
             if (!Valido(endereco))

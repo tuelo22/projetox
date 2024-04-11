@@ -26,7 +26,7 @@ namespace projetox.Api.Controllers.Autenticacao
         [HttpPut("AlterarSenha/{idUsuario}/{senhaAtual}/{senhaNova}/{senhaNova2}")]
         public IActionResult AlterarSenha(Guid idUsuario, string senhaAtual, string senhaNova, string senhaNova2)
         {
-            return Ok();
+            return Ok($"{idUsuario} {senhaAtual} {senhaNova} {senhaNova2}");
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace projetox.Api.Controllers.Autenticacao
         [HttpPut("AlterarEmail/{idUsuario}/{novoEmail}")]
         public IActionResult AlterarEmail(Guid idUsuario, string novoEmail)
         {
-            return Ok();
+            return Ok($"{idUsuario} {novoEmail}");
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace projetox.Api.Controllers.Autenticacao
         [HttpPut("ConfirmarEmail/{idUsuario}")]
         public IActionResult ReenviaConfirmarEmail(Guid idUsuario)
         {
-            return Ok("Funciona");
+            return Ok($"Funciona {idUsuario}");
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace projetox.Api.Controllers.Autenticacao
         [HttpPut("ConfirmarEmail/{idUsuario}/{email}/{codigo}")]
         public IActionResult ConfirmarEmail(Guid idUsuario, string email,string codigo)
         {
-            return Ok("Funciona");
+            return Ok($"{idUsuario} {email} {codigo}");
         }
     }
 }

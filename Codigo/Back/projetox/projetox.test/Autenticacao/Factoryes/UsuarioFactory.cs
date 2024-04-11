@@ -9,13 +9,12 @@ namespace projetox.test.Autenticacao.Factoryes
     {
         public static Usuario CriarUsuarioPadrao()
         {
-            Guid id = Guid.NewGuid();
             Nome nome = new("Julio", "Francis");
             Documento documento = new("234.908.170-28");
             Email email = new("julio@gmail.com");
             Senha senha = new("*Senha12");
             Telefone telefone = new("21991902196");
-            return new(id, nome, documento, email, senha, telefone);
+            return new(nome, documento, email, senha, telefone);
         }
     }
 }

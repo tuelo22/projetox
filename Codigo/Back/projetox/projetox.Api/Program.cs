@@ -5,6 +5,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using projetox.Api.Extensoes;
+using projetox.Domain.Base.Entidades;
 using projetox.Repository;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
@@ -49,8 +50,10 @@ internal class Program
             }
         }
     }
-
-    static string XmlCommentsFilePath
+    /// <summary>
+    /// Captura o XML com os comentários do projeto API
+    /// </summary>
+    static string XmlCommentsFilePathAPI
     {
         get
         {
@@ -59,15 +62,24 @@ internal class Program
             return Path.Combine(basePath, fileName);
         }
     }
+    /// <summary>
+    /// Captura o XML com os comentários do projeto domain
+    /// </summary>
+    static string XmlCommentsFilePathDomain
+    {
+        get
+        {
+            var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+            var fileName = typeof(BaseEntity).GetTypeInfo().Assembly.GetName().Name + ".xml";
+            return Path.Combine(basePath, fileName);
+        }
+    }
 
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(options =>
         {
@@ -79,7 +91,8 @@ internal class Program
 
             });
 
-            options.IncludeXmlComments(XmlCommentsFilePath);
+            options.IncludeXmlComments(XmlCommentsFilePathAPI);
+            options.IncludeXmlComments(XmlCommentsFilePathDomain);
 
             options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {

@@ -19,7 +19,7 @@ namespace projetox.test.Autenticacao.Entities
             var telefone = new Telefone("11999999999");
 
             // Act
-            var usuario = new Usuario(id, nome, documento, email, senha, telefone);
+            var usuario = new Usuario(nome, documento, email, senha, telefone);
 
             // Assert
             Assert.NotNull(usuario);

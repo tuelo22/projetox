@@ -4,11 +4,11 @@ using projetox.Domain.Core.Entidades;
 
 namespace projetox.Repository.Core.Mapping
 {
-    public class NaturezaJuridicaMapping : IEntityTypeConfiguration<NaturezaJuridica>
+    public class CanalDistribuicaoOpcaoMapping : IEntityTypeConfiguration<CanalDistribuicaoOpcao>
     {
-        public void Configure(EntityTypeBuilder<NaturezaJuridica> builder)
+        public void Configure(EntityTypeBuilder<CanalDistribuicaoOpcao> builder)
         {
-            builder.ToTable(nameof(NaturezaJuridica));
+            builder.ToTable(nameof(CanalDistribuicaoOpcao));
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(100);

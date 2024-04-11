@@ -6,7 +6,7 @@ namespace projetox.test.Core.Factoryes
     {
         public static NaturezaJuridica CriarNaturezaJuridicaPadrao()
         {
-            return new(Guid.NewGuid(), "MEI");
+            return new("MEI");
         }
     }
 }

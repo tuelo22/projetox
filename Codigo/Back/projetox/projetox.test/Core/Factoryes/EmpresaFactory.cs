@@ -20,9 +20,8 @@ namespace projetox.test.Core.Factoryes
 
             Telefone telefone = new("21991902197");
 
-            return new(Guid.NewGuid(),
-                    documento, naturezaJuridica, endereco, telefone,
-                    DateTime.Parse("24/11/1990"), 5, "JF Software", null);
+            return new(documento, naturezaJuridica, endereco, telefone,
+                    DateTime.Parse("24/11/1990"), 5, "JF Software", null, "Ser rico.");
         }
 
         public static Empresa CriarEmpresaComUsuarioPadrao()
@@ -38,9 +37,8 @@ namespace projetox.test.Core.Factoryes
 
             Telefone telefone = new("21991902197");
 
-            Empresa empresa = new(Guid.NewGuid(),
-                    documento, naturezaJuridica, endereco, telefone,
-                    DateTime.Parse("24/11/1990"), 5, "JF Software", null);
+            Empresa empresa = new(documento, naturezaJuridica, endereco, telefone,
+                    DateTime.Parse("24/11/1990"), 5, "JF Software", null, "Muito rico.");
 
             empresa.AdicionarUsuario(UsuarioFactory.CriarUsuarioPadrao());
 

@@ -5,16 +5,11 @@ using System.Linq.Expressions;
 
 namespace projetox.Repository.Base.Repository
 {
-    public class RepositoryBase<TEntidade, TId> : IRepositoryBase<TEntidade, TId>
+    public class RepositoryBase<TEntidade, TId>(DbContext context) : IRepositoryBase<TEntidade, TId>
             where TEntidade : BaseEntity
             where TId : struct
     {
-        private readonly DbContext _context;
-
-        public RepositoryBase(DbContext context)
-        {
-            _context = context;
-        }
+        private readonly DbContext _context = context;
 
         public IQueryable<TEntidade> ListarPor(Expression<Func<TEntidade, bool>> where, params Expression<Func<TEntidade, object>>[] includeProperties)
         {
@@ -33,7 +28,7 @@ namespace projetox.Repository.Base.Repository
 
         public TEntidade ObterPorId(TId id, params Expression<Func<TEntidade, object>>[] includeProperties)
         {
-            if (includeProperties.Any())
+            if (includeProperties.Length != 0)
             {
                 return Listar(includeProperties).FirstOrDefault(x => x.Id.ToString() == id.ToString());
             }
@@ -45,9 +40,9 @@ namespace projetox.Repository.Base.Repository
         {
             IQueryable<TEntidade> query = _context.Set<TEntidade>();
 
-            if (includeProperties.Any())
+            if (includeProperties.Length != 0)
             {
-                return Include(_context.Set<TEntidade>(), includeProperties);
+                return RepositoryBase<TEntidade, TId>.Include(_context.Set<TEntidade>(), includeProperties);
             }
 
             return query;
@@ -104,7 +99,7 @@ namespace projetox.Repository.Base.Repository
         /// <param name="query">Informe o objeto do tipo IQuerable</param>
         /// <param name="includeProperties">Ínforme o array de expressões que deseja incluir</param>
         /// <returns></returns>
-        private IQueryable<TEntidade> Include(IQueryable<TEntidade> query, params Expression<Func<TEntidade, object>>[] includeProperties)
+        private static IQueryable<TEntidade> Include(IQueryable<TEntidade> query, params Expression<Func<TEntidade, object>>[] includeProperties)
         {
             foreach (var property in includeProperties)
             {

@@ -49,13 +49,12 @@ namespace projetox.Domain.Core.Services
             if (Valido() && naturezaJuridica != null && usuario != null)
             {
                 Empresa empresa = new(
-                    Guid.NewGuid(),
                     documento, naturezaJuridica, endereco, telefone,
-                    dto.Abertura, dto.QuantidadeFuncionario, dto.Nome, dto.URLSite);
+                    dto.Abertura, dto.QuantidadeFuncionario, dto.Nome, dto.URLSite, dto.Objetivo);
 
                 dto.RedesSociais.ForEach(x =>
                 {
-                    RedeSocial redeSocial = new(Guid.NewGuid(), x.Nome, x.URLPerfil, empresa);
+                    RedeSocial redeSocial = new(x.Nome, x.URLPerfil, empresa);
                     AddMensagens(redeSocial);
 
                     if (Valido())
@@ -143,7 +142,7 @@ namespace projetox.Domain.Core.Services
 
                 dto.RedesSociais.ForEach(x =>
                 {
-                    RedeSocial redeSocial = new(Guid.NewGuid(), x.Nome, x.URLPerfil, empresa);
+                    RedeSocial redeSocial = new(x.Nome, x.URLPerfil, empresa);
                     AddMensagens(redeSocial);
 
                     if (Valido())

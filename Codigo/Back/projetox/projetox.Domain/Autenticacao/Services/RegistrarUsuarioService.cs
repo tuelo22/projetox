@@ -51,7 +51,7 @@ namespace projetox.Domain.Autenticacao.Services
 
             if (Valido())
             {
-                usuario = new(Guid.NewGuid(), nome, documento, email, senha, telefone);
+                usuario = new(nome, documento, email, senha, telefone);
                 AddMensagens(usuario);
 
                 if (Valido())

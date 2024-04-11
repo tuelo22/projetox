@@ -2,13 +2,22 @@
 
 namespace projetox.Domain.Base.Entidades
 {
-    public abstract class BaseEntity : Notificavel, IDisposable
+    /// <summary>
+    /// Entidade basica que generaliza notificação e ID para as entidades que possuem persistencia.
+    /// </summary>
+    public abstract class BaseEntity : Notificavel
     {
-        public Guid Id { get; protected set; }
+        /// <summary>
+        /// Identificador
+        /// </summary>
+        public Guid Id { get; private set; }
 
-        public void Dispose()
+        /// <summary>
+        /// Construtor padrão.
+        /// </summary>
+        protected BaseEntity()
         {
-            
+            Id = Guid.NewGuid();
         }
     }
 }

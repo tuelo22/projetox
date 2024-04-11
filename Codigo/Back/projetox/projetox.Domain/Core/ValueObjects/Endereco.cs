@@ -13,6 +13,22 @@ namespace projetox.Domain.Core.ValueObjects
         public string CEP { get; set; }
         public string CodIBGE { get; set; }
 
+        /// <summary>
+        /// Construtor do Entity
+        /// </summary>
+        public Endereco(){}
+
+        /// <summary>
+        /// Construtor padrao
+        /// </summary>
+        /// <param name="logradouro"></param>
+        /// <param name="numero"></param>
+        /// <param name="complemento"></param>
+        /// <param name="bairro"></param>
+        /// <param name="cidade"></param>
+        /// <param name="estado"></param>
+        /// <param name="cep"></param>
+        /// <param name="codIBGE"></param>
         public Endereco(string logradouro, string numero, string? complemento, string bairro, string cidade, string estado, string cep, string codIBGE)
         {
             Logradouro = logradouro;

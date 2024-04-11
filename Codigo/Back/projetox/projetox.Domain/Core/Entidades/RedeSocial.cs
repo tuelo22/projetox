@@ -7,12 +7,21 @@ namespace projetox.Domain.Core.Entidades
     {
         public string Nome { get; set; }
         public string URLPerfil { get; set; }
-        public Empresa Empresa { get; set; }
+        public virtual Empresa Empresa { get; set; }
 
-        public RedeSocial(Guid? id, string nome, string uRLPerfil, Empresa empresa)
+        /// <summary>
+        /// Construtor do Entity.
+        /// </summary>
+        public RedeSocial(){ }
+
+        /// <summary>
+        /// Construtor principal.
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <param name="uRLPerfil"></param>
+        /// <param name="empresa"></param>
+        public RedeSocial(string nome, string uRLPerfil, Empresa empresa)
         {
-            Id = id ?? Guid.NewGuid();
-
             Nome = nome;
 
             if (String.IsNullOrEmpty(nome))

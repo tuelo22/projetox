@@ -4,14 +4,9 @@ using projetox.Domain.Autenticacao.Entidades;
 
 namespace projetox.Repository
 {
-    public class XContext : DbContext
+    public class XContext(DbContextOptions<XContext> options) : DbContext(options)
     {
         public DbSet<Usuario> Usuarios { get; set; }
-
-
-        public XContext(DbContextOptions<XContext> options) : base(options)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

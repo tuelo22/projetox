@@ -13,6 +13,7 @@ namespace projetox.Domain.Core.DTO
         public String Nome { get; set; }
         public String Telefone { get; set; }
         public String? URLSite { get; set; }
+        public String Objetivo { get; set; }
         public EnderecoDTO Endereco { get; set; }
         public List<RedeSocialDTO> RedesSociais { get; set; }
 
@@ -29,6 +30,7 @@ namespace projetox.Domain.Core.DTO
                 Nome = entidade.Nome,
                 Telefone = entidade.Telefone.Numero,
                 URLSite = entidade.URLSite,
+                Objetivo = entidade.Objetivo,
                 Endereco = (EnderecoDTO)entidade.Endereco,
                 RedesSociais = entidade.RedesSociais.Select(e => (RedeSocialDTO)e).ToList()
             };
