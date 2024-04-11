@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using projetox.Api.Controllers.Base;
 using projetox.Domain.Core.DTO.Arguments;
 using projetox.Domain.Core.Interfaces.Services;
@@ -13,6 +14,7 @@ namespace projetox.Api.Controllers.Core
     /// <param name="_CanalDistribuicaoOpcaoService"></param>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Geral")]
     public class CanalDistribuicaoOpcaoController(
         IUnitOfWork unitOfWork,
         ICanalDistribuicaoOpcaoService _CanalDistribuicaoOpcaoService) : ControllerAPIBase(unitOfWork)

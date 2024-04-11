@@ -7,6 +7,7 @@ using projetox.Domain.Core.DTO;
 using projetox.Domain.Core.Interfaces.Services;
 using projetox.Domain.Core.Services;
 using projetox.Repository.Transactions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace projetox.Api.Controllers.Core
 {
@@ -15,6 +16,7 @@ namespace projetox.Api.Controllers.Core
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Geral")]
     public class PropostaValorController(
         IUnitOfWork unitOfWork,
         IPropostaValorService _PropostaValorService) : ControllerAPIBase(unitOfWork)

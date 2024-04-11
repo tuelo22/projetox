@@ -6,6 +6,7 @@ using projetox.Domain.Core.DTO;
 using projetox.Domain.Core.Interfaces.Services;
 using projetox.Repository.Transactions;
 using projetox.Api.Controllers.Base;
+using Microsoft.AspNetCore.Authorization;
 
 namespace projetox.Api.Controllers.Core
 {
@@ -14,6 +15,7 @@ namespace projetox.Api.Controllers.Core
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Geral")]
     public class SegmentoClienteController(
         IUnitOfWork unitOfWork,
         ISegmentoClienteService _SegmentoClienteService) : ControllerAPIBase(unitOfWork)
