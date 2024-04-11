@@ -35,14 +35,14 @@ namespace projetox.Domain.Autenticacao.Services
                 AddMensagem(Mensagem.Error("As senhas estão divergentes."));
             }
 
-            Usuario? usuario = repositoryUsuario.ObterPor(x => x.Email.Endereco.Equals(dto.Email, StringComparison.CurrentCultureIgnoreCase));
+            Usuario? usuario = repositoryUsuario.ObterPor(x => x.Email.Endereco.ToLower() == dto.Email.ToLower());
 
             if(usuario != null)
             {
                 AddMensagem(Mensagem.Error("O e-mail informado já está sendo utiliado por outro usuário."));
             }
 
-            usuario = repositoryUsuario.ObterPor(x => x.Documento.Numero.Equals(dto.NumeroDocumento, StringComparison.CurrentCultureIgnoreCase));
+            usuario = repositoryUsuario.ObterPor(x => x.Documento.Numero.ToLower() == dto.NumeroDocumento.ToLower());
 
             if (usuario != null)
             {
