@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using projetox.Domain.Core.Entidades;
-using System.Reflection.Emit;
 
 namespace projetox.Repository.Core.Mapping
 {
