@@ -11,11 +11,10 @@ namespace projetox.test.Autenticacao.Entities
         public void Usuario_CriacaoComParametrosValidos_DeveInstanciarCorretamente()
         {
             // Arrange
-            var id = Guid.NewGuid();
             var nome = new Nome("Nome de Teste", "Sobrenome de teste");
             var documento = new Documento("123456789");
             var email = new Email("teste@teste.com");
-            var senha = new Senha("senhaForte123");
+            var senha = new Senha("*senhaForte123");
             var telefone = new Telefone("11999999999");
 
             // Act
@@ -23,7 +22,6 @@ namespace projetox.test.Autenticacao.Entities
 
             // Assert
             Assert.NotNull(usuario);
-            Assert.Equal(usuario.Id, id);
             Assert.Equal(nome, usuario.Nome);
             Assert.Equal(documento, usuario.Documento);
             Assert.Equal(email, usuario.Email);
