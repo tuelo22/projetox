@@ -35,7 +35,7 @@ namespace projetox.Domain.Autenticacao.Services
             Senha senhacriptografada = new(dto?.Senha ?? string.Empty);
             String Login = dto?.Login ?? string.Empty;
 
-            var usuario = _RepositoryUsuario.ListarPor(x => x.Email.Endereco.Equals(Login, StringComparison.CurrentCultureIgnoreCase) && x.Senha.Valor == senhacriptografada.Valor).FirstOrDefault();
+            var usuario = _RepositoryUsuario.ListarPor(x => x.Email.Endereco.ToLower() == Login.ToLower() && x.Senha.Valor == senhacriptografada.Valor).FirstOrDefault();
 
             if (usuario == null)
             {
