@@ -56,7 +56,8 @@ namespace projetox.Domain.Autenticacao.Services
                      claims: new[]
                      {
                          new Claim(type: ClaimTypes.Name, value: usuario.Email.Endereco),
-                         new Claim(type: ClaimTypes.Name, value: "Geral")
+                         new Claim(type: ClaimTypes.NameIdentifier, value: usuario.Id.ToString()),
+                         new Claim(type: ClaimTypes.Role, value: "Geral")
                      },
                      expires:DateTime.Now.AddDays(1),
                      signingCredentials: signinCredentials
