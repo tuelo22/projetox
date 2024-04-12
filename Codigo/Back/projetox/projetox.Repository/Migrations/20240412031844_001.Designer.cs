@@ -12,8 +12,8 @@ using projetox.Repository;
 namespace projetox.Repository.Migrations
 {
     [DbContext(typeof(XContext))]
-    [Migration("20240412022236_002")]
-    partial class _002
+    [Migration("20240412031844_001")]
+    partial class _001
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,29 +43,19 @@ namespace projetox.Repository.Migrations
                     b.ToTable("CanalDistribuicaoOpcaoPropostaValor");
                 });
 
-            modelBuilder.Entity("EmpresaUsuario", b =>
+            modelBuilder.Entity("UsuarioEmpresa", b =>
                 {
-                    b.Property<Guid>("EmpresaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("EmpresasId")
+                    b.Property<Guid>("EmpresaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UsuariosId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasKey("UsuarioId", "EmpresaId");
 
-                    b.HasKey("EmpresaId", "UsuarioId");
+                    b.HasIndex("EmpresaId");
 
-                    b.HasIndex("EmpresasId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.HasIndex("UsuariosId");
-
-                    b.ToTable("EmpresaUsuario");
+                    b.ToTable("UsuarioEmpresa");
                 });
 
             modelBuilder.Entity("projetox.Domain.Autenticacao.Entidades.Usuario", b =>
@@ -196,287 +186,287 @@ namespace projetox.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("83244725-1f3d-4607-8e9c-0a517c0cf281"),
+                            Id = new Guid("e112209a-7af8-4c07-b8d9-62f70d0375dd"),
                             Descricao = "Empresa Pública"
                         },
                         new
                         {
-                            Id = new Guid("7737b2de-cc3c-4372-92ad-853125d66d6e"),
+                            Id = new Guid("67bdcecb-33e3-452b-bfc4-bfea1f7d0b73"),
                             Descricao = "Sociedade de Economia Mista"
                         },
                         new
                         {
-                            Id = new Guid("cf401b36-d069-4454-9dc7-7630eacf54f2"),
+                            Id = new Guid("6c0462c4-cc19-4c4f-be0f-211b64cd9145"),
                             Descricao = "Sociedade Anônima Aberta"
                         },
                         new
                         {
-                            Id = new Guid("51a9c67b-6243-4fbd-9ece-2a825c1cfb5a"),
+                            Id = new Guid("e9d4d27b-73da-44f5-8de7-adda78b4f0ee"),
                             Descricao = "Sociedade Anônima Fechada"
                         },
                         new
                         {
-                            Id = new Guid("6f68ad5b-0232-4874-9a0e-970bbd60219d"),
+                            Id = new Guid("9a974541-b379-45f3-8955-e7486e42cc00"),
                             Descricao = "Sociedade Empresária Limitada"
                         },
                         new
                         {
-                            Id = new Guid("02d0464f-99b6-4533-9bd5-16d552a34833"),
+                            Id = new Guid("1520cfa9-b0e2-4566-ab25-14c2f56cdc84"),
                             Descricao = "Sociedade Empresária em Nome Coletivo"
                         },
                         new
                         {
-                            Id = new Guid("214817d8-aaf6-4765-8967-0b097a6b3090"),
+                            Id = new Guid("3fef395a-9c71-40e3-8ac0-d90309a96218"),
                             Descricao = "Sociedade Empresária em Comandita Simples"
                         },
                         new
                         {
-                            Id = new Guid("5b0bc486-4efb-42b3-aa08-47d43f38cbe0"),
+                            Id = new Guid("77100271-c89f-42b5-b463-61371b4deed3"),
                             Descricao = "Sociedade Empresária em Comandita por Ações"
                         },
                         new
                         {
-                            Id = new Guid("12978b06-3e34-423e-b89f-bbc0d4a5eead"),
+                            Id = new Guid("dcb0eb5b-fad7-4af7-8d15-b2eb9a219731"),
                             Descricao = "Sociedade em Conta de Participação"
                         },
                         new
                         {
-                            Id = new Guid("cb8d37d2-e471-46a4-9e19-606a9b5d6ef0"),
+                            Id = new Guid("6892b42f-15a7-408d-9ac3-8eff65c97346"),
                             Descricao = "Empresário (Individual)"
                         },
                         new
                         {
-                            Id = new Guid("600ff2c9-965e-447e-948d-f9d5cd1075f8"),
+                            Id = new Guid("0f738818-940f-4f66-8382-82577bea9f3d"),
                             Descricao = "Cooperativa"
                         },
                         new
                         {
-                            Id = new Guid("31d27c53-00e8-4555-b4cb-9744def95281"),
+                            Id = new Guid("88528675-0737-4d01-9d74-f551334c98a2"),
                             Descricao = "Consórcio de Sociedades"
                         },
                         new
                         {
-                            Id = new Guid("e239ee6f-8b6a-4f78-92f4-a6c94d2428bb"),
+                            Id = new Guid("dee365e6-1c93-424f-b882-a0100c167550"),
                             Descricao = "Grupo de Sociedades"
                         },
                         new
                         {
-                            Id = new Guid("b6564961-b3f6-4eb2-965c-b62f5f596a82"),
+                            Id = new Guid("6fed5d6b-8128-4d5a-ae57-49078bb388a6"),
                             Descricao = "Estabelecimento, no Brasil, de Sociedade Estrangeira"
                         },
                         new
                         {
-                            Id = new Guid("0b83bfba-2aab-4a84-8673-5200651d7969"),
+                            Id = new Guid("bfea3dfe-f6ff-4db3-89be-14a70b3d1839"),
                             Descricao = "Estabelecimento, no Brasil, de Empresa Binacional Argentino-Brasileira"
                         },
                         new
                         {
-                            Id = new Guid("78999c7d-ca99-44d9-aa82-81300e0d685e"),
+                            Id = new Guid("92ad4d63-9efe-4486-b7e2-d71d3a869f0c"),
                             Descricao = "Empresa Domiciliada no Exterior"
                         },
                         new
                         {
-                            Id = new Guid("0503466a-6950-490f-bc83-c3ad4290b4f6"),
+                            Id = new Guid("269a2852-21bc-4483-9d75-29172f53f191"),
                             Descricao = "Clube/Fundo de Investimento"
                         },
                         new
                         {
-                            Id = new Guid("fb74e7c9-8a23-4709-846e-6792590932be"),
+                            Id = new Guid("68490f47-b627-4e21-9669-a13104585365"),
                             Descricao = "Sociedade Simples Pura"
                         },
                         new
                         {
-                            Id = new Guid("4c42d252-37d2-460e-883b-593a285acc78"),
+                            Id = new Guid("2411e352-269c-46ef-9f3e-1bfa3b1ea8f5"),
                             Descricao = "Sociedade Simples Limitada"
                         },
                         new
                         {
-                            Id = new Guid("3cdd55cb-1d23-4362-bf27-ccc60b7de337"),
+                            Id = new Guid("a3f37a9c-b62e-4ef9-afff-09800893cea6"),
                             Descricao = "Sociedade Simples em Nome Coletivo"
                         },
                         new
                         {
-                            Id = new Guid("fa2f3a8b-0a9d-4166-8d9e-f575276f063b"),
+                            Id = new Guid("28c125bc-5b45-4ecc-a3e0-249100c06fa5"),
                             Descricao = "Sociedade Simples em Comandita Simples"
                         },
                         new
                         {
-                            Id = new Guid("a9376496-19f8-4fbf-b7c3-45a43bbe8b31"),
+                            Id = new Guid("05b22fb4-682a-43d8-8359-02dbfa263326"),
                             Descricao = "Empresa Binacional"
                         },
                         new
                         {
-                            Id = new Guid("20cf1af8-a173-4ed3-ac81-46e5aaf5ae42"),
+                            Id = new Guid("b161d5a1-2708-450b-b4f0-efde0f914061"),
                             Descricao = "Consórcio de Empregadores"
                         },
                         new
                         {
-                            Id = new Guid("dab515e6-182e-4c1f-b3ae-32c117677463"),
+                            Id = new Guid("cc79b38b-247b-437a-b443-b1c3f64c4246"),
                             Descricao = "Consórcio Simples"
                         },
                         new
                         {
-                            Id = new Guid("2664dcd6-82bb-4b04-828d-418c242f802b"),
+                            Id = new Guid("4700e739-637b-491e-9aca-39a0bec301f0"),
                             Descricao = "Empresa Individual de Responsabilidade Limitada (de Natureza Empresária)"
                         },
                         new
                         {
-                            Id = new Guid("e129505a-0987-485d-ae4d-82f47960d171"),
+                            Id = new Guid("a957a2f4-a744-47ad-98c1-1295a21daf25"),
                             Descricao = "Empresa Individual de Responsabilidade Limitada (de Natureza Simples)"
                         },
                         new
                         {
-                            Id = new Guid("1aac0557-646b-47f1-8d69-31f35ba30d7a"),
+                            Id = new Guid("56f3ff63-1deb-4264-9aa9-a83aa1c42a54"),
                             Descricao = "Sociedade Unipessoal de Advogados"
                         },
                         new
                         {
-                            Id = new Guid("010f3e97-2a06-4116-95d1-33c5ffc32e68"),
+                            Id = new Guid("163a9ff9-44b5-4d96-ba66-9fb6f78e628b"),
                             Descricao = "Cooperativas de Consumo"
                         },
                         new
                         {
-                            Id = new Guid("8c31af3c-5fbf-4a66-89f6-4e1607e177ef"),
+                            Id = new Guid("21971845-cec6-40d3-b280-bfa026ae0b12"),
                             Descricao = "Empresa Simples de Inovação - Inova Simples"
                         },
                         new
                         {
-                            Id = new Guid("ff177aee-cbc0-438f-ab43-203a65fd7be6"),
+                            Id = new Guid("319a3f60-8a9e-4668-8f2c-bf079d20de70"),
                             Descricao = "Investidor Não Residente"
                         },
                         new
                         {
-                            Id = new Guid("3d6464e5-de8e-4a81-8e61-33ed31f33487"),
+                            Id = new Guid("cc0804db-7bfe-4b62-b422-248d56eb0f13"),
                             Descricao = "Serviço Notarial e Registral (Cartório)"
                         },
                         new
                         {
-                            Id = new Guid("e03f6133-ee08-4315-a78d-52094edbe983"),
+                            Id = new Guid("9e6a7356-ac04-4383-a40b-6988e95a179c"),
                             Descricao = "Fundação Privada"
                         },
                         new
                         {
-                            Id = new Guid("be19c5b0-e8e3-4e06-8362-aa41d0e34447"),
+                            Id = new Guid("e272ce0f-29e2-4a30-9082-5554ed0040e1"),
                             Descricao = "Serviço Social Autônomo"
                         },
                         new
                         {
-                            Id = new Guid("2076ed25-0410-4e9a-ba01-326b4cd0f66b"),
+                            Id = new Guid("bb76bf45-3354-46e2-9b9a-eb6ed05dfd4d"),
                             Descricao = "Condomínio Edilício"
                         },
                         new
                         {
-                            Id = new Guid("e84b9aba-6df9-4a55-b3c4-f9e9f02e1712"),
+                            Id = new Guid("46a35d1c-720b-403e-94d3-70a4dada94bb"),
                             Descricao = "Comissão de Conciliação Prévia"
                         },
                         new
                         {
-                            Id = new Guid("006e3b54-ef4a-426b-ae82-7c4e5bfd908b"),
+                            Id = new Guid("d7565c27-6763-4e6d-942f-32753d6bfe89"),
                             Descricao = "Entidade de Mediação e Arbitragem"
                         },
                         new
                         {
-                            Id = new Guid("b43fdab4-abe3-4429-8f09-022ff908129d"),
+                            Id = new Guid("fe85f277-65bb-4c4e-9344-2e7ba811b752"),
                             Descricao = "Entidade Sindical"
                         },
                         new
                         {
-                            Id = new Guid("27989b1f-dad5-42a2-948b-78bc1cada243"),
+                            Id = new Guid("90a4cd32-5f1f-4ded-a285-f9d549372cc6"),
                             Descricao = "Estabelecimento, no Brasil, de Fundação ou Associação Estrangeiras"
                         },
                         new
                         {
-                            Id = new Guid("bf107ba0-80a7-4d2c-86e0-b674b4a557f1"),
+                            Id = new Guid("7c515124-9d3b-46e5-9a99-7024b5270918"),
                             Descricao = "Fundação ou Associação Domiciliada no Exterior"
                         },
                         new
                         {
-                            Id = new Guid("5c181b05-d28f-4808-93b4-fe8a998c3133"),
+                            Id = new Guid("5c97f3fc-804c-453b-bb04-7b3402eb12bf"),
                             Descricao = "Organização Religiosa"
                         },
                         new
                         {
-                            Id = new Guid("946115cb-c669-4099-b3e3-11ba546190ff"),
+                            Id = new Guid("9842c97c-a930-4c87-ab71-c582dbd4802f"),
                             Descricao = "Comunidade Indígena"
                         },
                         new
                         {
-                            Id = new Guid("105713c6-75ad-4964-8f93-eef899d7ea8f"),
+                            Id = new Guid("764ca754-54d3-447a-8976-6e05d3d6d55a"),
                             Descricao = "Fundo Privado"
                         },
                         new
                         {
-                            Id = new Guid("f865effe-3d44-4d88-b7e0-7f9e9539a5d8"),
+                            Id = new Guid("a483bc25-f85b-44c3-bb3e-bbfceda0050c"),
                             Descricao = "Órgão de Direção Nacional de Partido Político"
                         },
                         new
                         {
-                            Id = new Guid("b2e905a3-62ec-44d7-bf0b-bcdcbdf643f1"),
+                            Id = new Guid("3767dffe-761f-4f17-8f47-283d69ab2086"),
                             Descricao = "Órgão de Direção Regional de Partido Político"
                         },
                         new
                         {
-                            Id = new Guid("0fb0258a-05f5-4ec7-8c71-baa21a945709"),
+                            Id = new Guid("986dc3f6-7423-46b2-995a-dc9100d06b80"),
                             Descricao = "Órgão de Direção Local de Partido Político"
                         },
                         new
                         {
-                            Id = new Guid("e0c8bb2a-4d84-4816-83c6-69b476263ee0"),
+                            Id = new Guid("96ba3a34-3174-4d27-81f9-55eedbeb0021"),
                             Descricao = "Comitê Financeiro de Partido Político"
                         },
                         new
                         {
-                            Id = new Guid("b912f542-ffcf-49c8-aeb5-582f6b0c41dd"),
+                            Id = new Guid("d39370b9-abb4-448d-89d3-6d78412520d2"),
                             Descricao = "Frente Plebiscitária ou Referendária"
                         },
                         new
                         {
-                            Id = new Guid("1ccff087-9d80-49ae-a41c-24677e87a26f"),
+                            Id = new Guid("0c782749-d321-46ba-80b4-3cfaa72104a7"),
                             Descricao = "Organização Social (OS)"
                         },
                         new
                         {
-                            Id = new Guid("bab30284-6a94-4f71-8ab8-7c536cd5cffa"),
+                            Id = new Guid("6238d6cf-94b6-4dd0-8d89-0cc21157242a"),
                             Descricao = "Demais Condomínios"
                         },
                         new
                         {
-                            Id = new Guid("d7819591-d266-44ea-8e97-e291b65e81b0"),
+                            Id = new Guid("9dec824d-2471-433d-a3cc-9bfbe6d90519"),
                             Descricao = "Plano de Benefícios de Previdência Complementar Fechada"
                         },
                         new
                         {
-                            Id = new Guid("50c5dabb-996a-4bcd-abbd-1501ce6e3981"),
+                            Id = new Guid("47610fa3-be72-4e0a-9f11-1200b3700595"),
                             Descricao = "Associação Privada"
                         },
                         new
                         {
-                            Id = new Guid("8afc62ac-48b2-4fe6-ba17-d7618f956ba6"),
+                            Id = new Guid("d627523c-2095-4dc9-a038-6c3504ee627f"),
                             Descricao = "Empresa Individual Imobiliária"
                         },
                         new
                         {
-                            Id = new Guid("6f3d17c7-83cd-43c0-8e54-fec18d258c44"),
+                            Id = new Guid("357f783c-4dd3-47e1-9883-b29a1116909a"),
                             Descricao = "Segurado Especial"
                         },
                         new
                         {
-                            Id = new Guid("55abc785-da69-472c-8db4-ebd26eef795c"),
+                            Id = new Guid("2d69da97-ab08-4f4f-bca7-f06ab993d413"),
                             Descricao = "Contribuinte individual"
                         },
                         new
                         {
-                            Id = new Guid("0a7dcb32-5230-4f83-bb54-57328c8e8ece"),
+                            Id = new Guid("b994f785-1dfc-4597-908c-5eb60cf86cfa"),
                             Descricao = "Candidato a Cargo Político Eletivo"
                         },
                         new
                         {
-                            Id = new Guid("1e135128-2fce-45dc-96c7-5abdb350c26a"),
+                            Id = new Guid("d1f84d86-83de-4cd7-aa07-8fb8bb58315f"),
                             Descricao = "Leiloeiro"
                         },
                         new
                         {
-                            Id = new Guid("8c708251-0351-409d-83b5-9647e430c90c"),
+                            Id = new Guid("4778c548-05b5-4e1d-b0ca-da6088ddc036"),
                             Descricao = "Produtor Rural (Pessoa Física)"
                         });
                 });
@@ -666,29 +656,17 @@ namespace projetox.Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EmpresaUsuario", b =>
+            modelBuilder.Entity("UsuarioEmpresa", b =>
                 {
                     b.HasOne("projetox.Domain.Core.Entidades.Empresa", null)
                         .WithMany()
                         .HasForeignKey("EmpresaId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("projetox.Domain.Core.Entidades.Empresa", null)
-                        .WithMany()
-                        .HasForeignKey("EmpresasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("projetox.Domain.Autenticacao.Entidades.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("projetox.Domain.Autenticacao.Entidades.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UsuariosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

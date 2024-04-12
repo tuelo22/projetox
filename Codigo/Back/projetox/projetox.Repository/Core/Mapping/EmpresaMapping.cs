@@ -40,12 +40,15 @@ namespace projetox.Repository.Core.Mapping
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(255);
             builder.Property(x => x.URLSite).HasMaxLength(500);
 
-            builder.HasMany(empresa => empresa.Usuarios)
-                   .WithMany(usuario => usuario.Empresas)
-                   .UsingEntity("EmpresaUsuario",
-                           l => l.HasOne(typeof(Empresa)).WithMany().HasForeignKey("EmpresaId").HasPrincipalKey(nameof(Empresa.Id)).OnDelete(DeleteBehavior.NoAction),
-                           r => r.HasOne(typeof(Usuario)).WithMany().HasForeignKey("UsuarioId").HasPrincipalKey(nameof(Usuario.Id)).OnDelete(DeleteBehavior.NoAction),
-                           j => j.HasKey("EmpresaId", "UsuarioId"));
+            //builder
+            //    .HasMany(e => e.Usuarios)
+            //    .WithMany(e => e.Empresas)
+            //    .UsingEntity(
+            //        "EmpresaUsuario",
+            //        l => l.HasOne(typeof(Empresa)).WithMany().HasForeignKey("EmpresaId").HasPrincipalKey(nameof(Empresa.Id)),
+            //        r => r.HasOne(typeof(Usuario)).WithMany().HasForeignKey("UsuarioId").HasPrincipalKey(nameof(Usuario.Id)),
+            //        j => j.HasKey("EmpresaId", "UsuarioId"));
+
 
         }
     }

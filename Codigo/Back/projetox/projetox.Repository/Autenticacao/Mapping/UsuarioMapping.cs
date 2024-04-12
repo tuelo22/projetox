@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using projetox.Domain.Autenticacao.Entidades;
 using projetox.Domain.Autenticacao.ValueObjects;
 using projetox.Domain.Base.ValueObjects;
+using projetox.Domain.Core.Entidades;
 using projetox.Domain.Core.ValueObjects;
 using System.Reflection.Metadata;
 
@@ -42,6 +43,15 @@ namespace projetox.Repository.Autenticacao.Mapping
             {
                 c.Property(x => x.Numero).IsRequired().HasMaxLength(25);
             });
+
+            builder
+                .HasMany(e => e.Empresas)
+                .WithMany(e => e.Usuarios)
+                .UsingEntity(
+                    "UsuarioEmpresa",
+                    l => l.HasOne(typeof(Empresa)).WithMany().HasForeignKey("EmpresaId").HasPrincipalKey(nameof(Empresa.Id)),
+                    r => r.HasOne(typeof(Usuario)).WithMany().HasForeignKey("UsuarioId").HasPrincipalKey(nameof(Usuario.Id)),
+                    j => j.HasKey("UsuarioId", "EmpresaId"));
         }
     }
 }

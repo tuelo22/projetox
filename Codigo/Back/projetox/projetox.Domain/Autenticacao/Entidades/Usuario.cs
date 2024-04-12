@@ -13,7 +13,7 @@ namespace projetox.Domain.Autenticacao.Entidades
         public Email Email { get; private set; }
         public Senha Senha { get; private set; }
         public Telefone Telefone { get; private set; }
-        public virtual ICollection<Empresa> Empresas { get; } = [];
+        public virtual ICollection<Empresa> Empresas { get; private set; } = [];
 
         /// <summary>
         /// Construtor do Entity.

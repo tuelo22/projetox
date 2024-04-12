@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace projetox.Repository.Migrations
 {
     /// <inheritdoc />
@@ -87,42 +89,6 @@ namespace projetox.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmpresaUsuario",
-                columns: table => new
-                {
-                    EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EmpresasId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsuariosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmpresaUsuario", x => new { x.EmpresaId, x.UsuarioId });
-                    table.ForeignKey(
-                        name: "FK_EmpresaUsuario_Empresa_EmpresaId",
-                        column: x => x.EmpresaId,
-                        principalTable: "Empresa",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_EmpresaUsuario_Empresa_EmpresasId",
-                        column: x => x.EmpresasId,
-                        principalTable: "Empresa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmpresaUsuario_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuario",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_EmpresaUsuario_Usuario_UsuariosId",
-                        column: x => x.UsuariosId,
-                        principalTable: "Usuario",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PropostaValor",
                 columns: table => new
                 {
@@ -158,6 +124,30 @@ namespace projetox.Repository.Migrations
                         name: "FK_RedeSocial_Empresa_EmpresaId",
                         column: x => x.EmpresaId,
                         principalTable: "Empresa",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UsuarioEmpresa",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmpresaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsuarioEmpresa", x => new { x.UsuarioId, x.EmpresaId });
+                    table.ForeignKey(
+                        name: "FK_UsuarioEmpresa_Empresa_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresa",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UsuarioEmpresa_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -330,6 +320,70 @@ namespace projetox.Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "NaturezaJuridica",
+                columns: new[] { "Id", "Descricao" },
+                values: new object[,]
+                {
+                    { new Guid("05b22fb4-682a-43d8-8359-02dbfa263326"), "Empresa Binacional" },
+                    { new Guid("0c782749-d321-46ba-80b4-3cfaa72104a7"), "Organização Social (OS)" },
+                    { new Guid("0f738818-940f-4f66-8382-82577bea9f3d"), "Cooperativa" },
+                    { new Guid("1520cfa9-b0e2-4566-ab25-14c2f56cdc84"), "Sociedade Empresária em Nome Coletivo" },
+                    { new Guid("163a9ff9-44b5-4d96-ba66-9fb6f78e628b"), "Cooperativas de Consumo" },
+                    { new Guid("21971845-cec6-40d3-b280-bfa026ae0b12"), "Empresa Simples de Inovação - Inova Simples" },
+                    { new Guid("2411e352-269c-46ef-9f3e-1bfa3b1ea8f5"), "Sociedade Simples Limitada" },
+                    { new Guid("269a2852-21bc-4483-9d75-29172f53f191"), "Clube/Fundo de Investimento" },
+                    { new Guid("28c125bc-5b45-4ecc-a3e0-249100c06fa5"), "Sociedade Simples em Comandita Simples" },
+                    { new Guid("2d69da97-ab08-4f4f-bca7-f06ab993d413"), "Contribuinte individual" },
+                    { new Guid("319a3f60-8a9e-4668-8f2c-bf079d20de70"), "Investidor Não Residente" },
+                    { new Guid("357f783c-4dd3-47e1-9883-b29a1116909a"), "Segurado Especial" },
+                    { new Guid("3767dffe-761f-4f17-8f47-283d69ab2086"), "Órgão de Direção Regional de Partido Político" },
+                    { new Guid("3fef395a-9c71-40e3-8ac0-d90309a96218"), "Sociedade Empresária em Comandita Simples" },
+                    { new Guid("46a35d1c-720b-403e-94d3-70a4dada94bb"), "Comissão de Conciliação Prévia" },
+                    { new Guid("4700e739-637b-491e-9aca-39a0bec301f0"), "Empresa Individual de Responsabilidade Limitada (de Natureza Empresária)" },
+                    { new Guid("47610fa3-be72-4e0a-9f11-1200b3700595"), "Associação Privada" },
+                    { new Guid("4778c548-05b5-4e1d-b0ca-da6088ddc036"), "Produtor Rural (Pessoa Física)" },
+                    { new Guid("56f3ff63-1deb-4264-9aa9-a83aa1c42a54"), "Sociedade Unipessoal de Advogados" },
+                    { new Guid("5c97f3fc-804c-453b-bb04-7b3402eb12bf"), "Organização Religiosa" },
+                    { new Guid("6238d6cf-94b6-4dd0-8d89-0cc21157242a"), "Demais Condomínios" },
+                    { new Guid("67bdcecb-33e3-452b-bfc4-bfea1f7d0b73"), "Sociedade de Economia Mista" },
+                    { new Guid("68490f47-b627-4e21-9669-a13104585365"), "Sociedade Simples Pura" },
+                    { new Guid("6892b42f-15a7-408d-9ac3-8eff65c97346"), "Empresário (Individual)" },
+                    { new Guid("6c0462c4-cc19-4c4f-be0f-211b64cd9145"), "Sociedade Anônima Aberta" },
+                    { new Guid("6fed5d6b-8128-4d5a-ae57-49078bb388a6"), "Estabelecimento, no Brasil, de Sociedade Estrangeira" },
+                    { new Guid("764ca754-54d3-447a-8976-6e05d3d6d55a"), "Fundo Privado" },
+                    { new Guid("77100271-c89f-42b5-b463-61371b4deed3"), "Sociedade Empresária em Comandita por Ações" },
+                    { new Guid("7c515124-9d3b-46e5-9a99-7024b5270918"), "Fundação ou Associação Domiciliada no Exterior" },
+                    { new Guid("88528675-0737-4d01-9d74-f551334c98a2"), "Consórcio de Sociedades" },
+                    { new Guid("90a4cd32-5f1f-4ded-a285-f9d549372cc6"), "Estabelecimento, no Brasil, de Fundação ou Associação Estrangeiras" },
+                    { new Guid("92ad4d63-9efe-4486-b7e2-d71d3a869f0c"), "Empresa Domiciliada no Exterior" },
+                    { new Guid("96ba3a34-3174-4d27-81f9-55eedbeb0021"), "Comitê Financeiro de Partido Político" },
+                    { new Guid("9842c97c-a930-4c87-ab71-c582dbd4802f"), "Comunidade Indígena" },
+                    { new Guid("986dc3f6-7423-46b2-995a-dc9100d06b80"), "Órgão de Direção Local de Partido Político" },
+                    { new Guid("9a974541-b379-45f3-8955-e7486e42cc00"), "Sociedade Empresária Limitada" },
+                    { new Guid("9dec824d-2471-433d-a3cc-9bfbe6d90519"), "Plano de Benefícios de Previdência Complementar Fechada" },
+                    { new Guid("9e6a7356-ac04-4383-a40b-6988e95a179c"), "Fundação Privada" },
+                    { new Guid("a3f37a9c-b62e-4ef9-afff-09800893cea6"), "Sociedade Simples em Nome Coletivo" },
+                    { new Guid("a483bc25-f85b-44c3-bb3e-bbfceda0050c"), "Órgão de Direção Nacional de Partido Político" },
+                    { new Guid("a957a2f4-a744-47ad-98c1-1295a21daf25"), "Empresa Individual de Responsabilidade Limitada (de Natureza Simples)" },
+                    { new Guid("b161d5a1-2708-450b-b4f0-efde0f914061"), "Consórcio de Empregadores" },
+                    { new Guid("b994f785-1dfc-4597-908c-5eb60cf86cfa"), "Candidato a Cargo Político Eletivo" },
+                    { new Guid("bb76bf45-3354-46e2-9b9a-eb6ed05dfd4d"), "Condomínio Edilício" },
+                    { new Guid("bfea3dfe-f6ff-4db3-89be-14a70b3d1839"), "Estabelecimento, no Brasil, de Empresa Binacional Argentino-Brasileira" },
+                    { new Guid("cc0804db-7bfe-4b62-b422-248d56eb0f13"), "Serviço Notarial e Registral (Cartório)" },
+                    { new Guid("cc79b38b-247b-437a-b443-b1c3f64c4246"), "Consórcio Simples" },
+                    { new Guid("d1f84d86-83de-4cd7-aa07-8fb8bb58315f"), "Leiloeiro" },
+                    { new Guid("d39370b9-abb4-448d-89d3-6d78412520d2"), "Frente Plebiscitária ou Referendária" },
+                    { new Guid("d627523c-2095-4dc9-a038-6c3504ee627f"), "Empresa Individual Imobiliária" },
+                    { new Guid("d7565c27-6763-4e6d-942f-32753d6bfe89"), "Entidade de Mediação e Arbitragem" },
+                    { new Guid("dcb0eb5b-fad7-4af7-8d15-b2eb9a219731"), "Sociedade em Conta de Participação" },
+                    { new Guid("dee365e6-1c93-424f-b882-a0100c167550"), "Grupo de Sociedades" },
+                    { new Guid("e112209a-7af8-4c07-b8d9-62f70d0375dd"), "Empresa Pública" },
+                    { new Guid("e272ce0f-29e2-4a30-9082-5554ed0040e1"), "Serviço Social Autônomo" },
+                    { new Guid("e9d4d27b-73da-44f5-8de7-adda78b4f0ee"), "Sociedade Anônima Fechada" },
+                    { new Guid("fe85f277-65bb-4c4e-9344-2e7ba811b752"), "Entidade Sindical" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CanalDistribuicao_CanalDistribuicaoOpcaoId",
                 table: "CanalDistribuicao",
@@ -349,21 +403,6 @@ namespace projetox.Repository.Migrations
                 name: "IX_Empresa_NaturezaJuridicaId",
                 table: "Empresa",
                 column: "NaturezaJuridicaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpresaUsuario_EmpresasId",
-                table: "EmpresaUsuario",
-                column: "EmpresasId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpresaUsuario_UsuarioId",
-                table: "EmpresaUsuario",
-                column: "UsuarioId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpresaUsuario_UsuariosId",
-                table: "EmpresaUsuario",
-                column: "UsuariosId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FonteReceita_PropostaValorId",
@@ -404,6 +443,11 @@ namespace projetox.Repository.Migrations
                 name: "IX_SegmentoReclamacaoAtendimento_SegmentoClienteId",
                 table: "SegmentoReclamacaoAtendimento",
                 column: "SegmentoClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsuarioEmpresa_EmpresaId",
+                table: "UsuarioEmpresa",
+                column: "EmpresaId");
         }
 
         /// <inheritdoc />
@@ -414,9 +458,6 @@ namespace projetox.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "CanalDistribuicaoOpcaoPropostaValor");
-
-            migrationBuilder.DropTable(
-                name: "EmpresaUsuario");
 
             migrationBuilder.DropTable(
                 name: "FonteReceita");
@@ -437,13 +478,16 @@ namespace projetox.Repository.Migrations
                 name: "SegmentoReclamacaoAtendimento");
 
             migrationBuilder.DropTable(
+                name: "UsuarioEmpresa");
+
+            migrationBuilder.DropTable(
                 name: "CanalDistribuicaoOpcao");
 
             migrationBuilder.DropTable(
-                name: "Usuario");
+                name: "SegmentoCliente");
 
             migrationBuilder.DropTable(
-                name: "SegmentoCliente");
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "PropostaValor");

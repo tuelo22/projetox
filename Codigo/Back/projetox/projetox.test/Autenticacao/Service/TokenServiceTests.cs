@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Moq;
-using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
+using projetox.Domain.Autenticacao.DTO;
 using projetox.Domain.Autenticacao.Entidades;
 using projetox.Domain.Autenticacao.Interfaces.Repositories;
 using projetox.Domain.Autenticacao.Services;

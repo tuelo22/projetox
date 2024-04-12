@@ -18,8 +18,8 @@ namespace projetox.Domain.Core.Entidades
         public String Nome { get; private set; }
         public String? URLSite { get; private set; }
         public String Objetivo { get; set; }
-        public virtual ICollection<RedeSocial> RedesSociais { get; } = new List<RedeSocial>();
-        public virtual ICollection<Usuario> Usuarios { get; } = new List<Usuario>();
+        public virtual ICollection<RedeSocial> RedesSociais { get; private set; } = [];
+        public virtual ICollection<Usuario> Usuarios { get; private set; } = [];
         public virtual ICollection<PropostaValor> PropostasValor { get; private set; } = [];
 
         /// <summary>
