@@ -82,26 +82,11 @@ namespace projetox.Domain.Core.Entidades
 
         public void AddSegmentoBuscarEmpresa(List<SegmentoBuscarEmpresa> lista) => lista.ForEach(x => SegmentoBuscarEmpresas.Add(x));
         public void AddSegmentoBuscarEmpresa(SegmentoBuscarEmpresa item) => SegmentoBuscarEmpresas.Add(item);
-        public void AtualizarSegmentoBuscarEmpresas(List<SegmentoBuscarEmpresa> lista)
-        {
-            SegmentoBuscarEmpresas.Clear();
-            AddSegmentoBuscarEmpresa(lista);
-        }
 
         public void AddSegmentoReclamacaoAtendimento(List<SegmentoReclamacaoAtendimento> lista) => lista.ForEach(x => SegmentoReclamacaoAtendimentos.Add(x));
         public void AddSegmentoReclamacaoAtendimento(SegmentoReclamacaoAtendimento item) => SegmentoReclamacaoAtendimentos.Add(item);
-        public void AtualizarSegmentoReclamacaoAtendimentos(List<SegmentoReclamacaoAtendimento> lista)
-        {
-            SegmentoReclamacaoAtendimentos.Clear();
-            AddSegmentoReclamacaoAtendimento(lista);
-        }
 
         public void AddSegmentoAjudarPessoa(List<SegmentoAjudarPessoa> lista) => lista.ForEach(x => SegmentoAjudarPessoas.Add(x));
         public void AddSegmentoAjudarPessoa(SegmentoAjudarPessoa item) => SegmentoAjudarPessoas.Add(item);
-        public void AtualizarSegmentoAjudarPessoas(List<SegmentoAjudarPessoa> lista)
-        {
-            SegmentoAjudarPessoas.Clear();
-            AddSegmentoAjudarPessoa(lista);
-        }
     }
 }

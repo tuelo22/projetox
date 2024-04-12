@@ -29,7 +29,7 @@ namespace projetox.Domain.Core.Services
             {
                 AddMensagem(Mensagem.Error("Segmento do cliente não localizada."));
             }
-            else if(segmento.PropostaValor.Empresa.Usuarios.Any(x => x.Id == IdUsuario))
+            else if(!segmento.PropostaValor.Empresa.Usuarios.Any(x => x.Id == IdUsuario))
             {
                 AddMensagem(Mensagem.Error("Empresa da proposta de valor não relacionada ao usuário."));
             }
@@ -72,10 +72,6 @@ namespace projetox.Domain.Core.Services
                 segmento.AtualizarServindoPessoa(dto.ServindoPessoa);
                 segmento.AtualizaValor(dto.Valor);
                 segmento.AtualizaClienteDispostoPagar(opcao);
-
-                segmento.AtualizarSegmentoBuscarEmpresas(segmentoBuscarEmpresas);
-                segmento.AtualizarSegmentoAjudarPessoas(segmentoAjudarPessoas);
-                segmento.AtualizarSegmentoReclamacaoAtendimentos(segmentoReclamacaoAtendimentos);
                 
                 ValidaListas(segmento);
                 AddMensagens(segmento);
@@ -106,7 +102,7 @@ namespace projetox.Domain.Core.Services
             {
                 AddMensagem(Mensagem.Error("Proposta de valor não localizada."));
             }
-            else if (proposta.Empresa.Usuarios.Any(x => x.Id == IdUsuario))
+            else if (!proposta.Empresa.Usuarios.Any(x => x.Id == IdUsuario))
             {
                 AddMensagem(Mensagem.Error("Empresa da proposta de valor não relacionada ao usuário."));
             }

@@ -59,13 +59,6 @@ namespace projetox.Domain.Core.Entidades
 
         public void AddRelacionamentoCliente(List<RelacionamentoCliente> lista) => lista.ForEach(x => RelacionamentoClientes.Add(x));
         public void AddRelacionamentoCliente(RelacionamentoCliente item) => RelacionamentoClientes.Add(item);
-        public void AtualizarRelacionamentoCliente(List<RelacionamentoCliente> lista)
-        {
-            var opcoes = RelacionamentoClientes.ToList();
-            opcoes.ForEach(x => RelacionamentoClientes.Remove(x));
-
-            AddRelacionamentoCliente(lista);
-        }
 
         public void AddCanalDistribuicaoOpcoes(List<CanalDistribuicaoOpcao> lista) => lista.ForEach(x => CanalDistribuicaoOpcoes.Add(x));
         public void AddCanalDistribuicaoOpcoes(CanalDistribuicaoOpcao item) => CanalDistribuicaoOpcoes.Add(item);
@@ -79,11 +72,5 @@ namespace projetox.Domain.Core.Entidades
 
         public void AddFontesReceita(List<FonteReceita> lista) => lista.ForEach(x => FontesReceita.Add(x));
         public void AddFontesReceita(FonteReceita item) => FontesReceita.Add(item);
-        public void AtualizarFontesReceita(List<FonteReceita> lista)
-        {
-            var opcoes = FontesReceita.ToList();
-            opcoes.ForEach(x => FontesReceita.Remove(x));
-            AddFontesReceita(lista);
-        }
     }
 }
