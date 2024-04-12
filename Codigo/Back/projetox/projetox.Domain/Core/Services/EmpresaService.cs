@@ -165,9 +165,6 @@ namespace projetox.Domain.Core.Services
 
                 if (Valido())
                 {
-                    empresaRepository.Editar(empresa);
-
-                    // rede social repository
                     redeSocialRepository.RemoverLista(empresa.RedesSociais);
                     redeSocialRepository.AdicionarLista(redeSocials);
 

@@ -12,7 +12,10 @@ namespace projetox.Domain.Core.Services
 {
     public class SegmentoClienteService(
         IPropostaValorRepository propostaValorRepository,
-        ISegmentoClienteRepository segmentoClienteRepository) : ServiceBase, ISegmentoClienteService
+        ISegmentoClienteRepository segmentoClienteRepository,
+        ISegmentoAjudarPessoaRepository segmentoAjudarPessoaRepository,
+        ISegmentoBuscarEmpresaRepository segmentoBuscarEmpresaRepository,
+        ISegmentoReclamacaoAtendimentoRepository segmentoReclamacaoAtendimentoRepository) : ServiceBase, ISegmentoClienteService
     {
         public ResponseBaseDTO Atualizar(Guid IdUsuario, SegmentoClienteDTO dto)
         {
@@ -69,6 +72,7 @@ namespace projetox.Domain.Core.Services
                 segmento.AtualizarServindoPessoa(dto.ServindoPessoa);
                 segmento.AtualizaValor(dto.Valor);
                 segmento.AtualizaClienteDispostoPagar(opcao);
+
                 segmento.AtualizarSegmentoBuscarEmpresas(segmentoBuscarEmpresas);
                 segmento.AtualizarSegmentoAjudarPessoas(segmentoAjudarPessoas);
                 segmento.AtualizarSegmentoReclamacaoAtendimentos(segmentoReclamacaoAtendimentos);
@@ -79,6 +83,14 @@ namespace projetox.Domain.Core.Services
                 if (Valido())
                 {
                     segmentoClienteRepository.Editar(segmento);
+
+                    segmentoAjudarPessoaRepository.RemoverLista(segmento.SegmentoAjudarPessoas);
+                    segmentoAjudarPessoaRepository.AdicionarLista(segmentoAjudarPessoas);
+                    segmentoBuscarEmpresaRepository.RemoverLista(segmento.SegmentoBuscarEmpresas);
+                    segmentoBuscarEmpresaRepository.AdicionarLista(segmentoBuscarEmpresas);
+                    segmentoReclamacaoAtendimentoRepository.RemoverLista(segmento.SegmentoReclamacaoAtendimentos);
+                    segmentoReclamacaoAtendimentoRepository.AdicionarLista(segmentoReclamacaoAtendimentos);
+
                     AddMensagem(Mensagem.Info("Segmento do cliente alterado com sucesso !"));
                 }
             }
@@ -145,7 +157,6 @@ namespace projetox.Domain.Core.Services
             return GetRetorno();
         }
 
-
         private void ValidaListas(SegmentoCliente segmento)
         {
             if(segmento.SegmentoAjudarPessoas.Count == 0)
@@ -163,7 +174,6 @@ namespace projetox.Domain.Core.Services
                 AddMensagem(Mensagem.Error("O segmento do cliente deve possuir ao menos um segmento reclamação e atendimentos."));
             }
         }
-
 
         public ResponseBaseDTO Deletar(Guid IdUsuario, Guid IdSegmentoCliente)
         {

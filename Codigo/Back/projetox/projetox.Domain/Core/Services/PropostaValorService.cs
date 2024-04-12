@@ -15,24 +15,20 @@ namespace projetox.Domain.Core.Services
         IRepositoryUsuario repositoryUsuario,
         IEmpresaRepository empresaRepository,
         IPropostaValorRepository propostaValorRepository,
-        ICanalDistribuicaoOpcaoRepository canalDistribuicaoOpcaoRepository) : ServiceBase, IPropostaValorService
+        ICanalDistribuicaoOpcaoRepository canalDistribuicaoOpcaoRepository,
+        IFonteReceitaRepository fonteReceitaRepository,
+        IRelacionamentoClienteRepository relacionamentoClienteRepository) : ServiceBase, IPropostaValorService
     {
         public ResponseBaseDTO Atualizar(Guid IdUsuario, PropostaValorDTO dto)
         {
-            Usuario usuario = repositoryUsuario.ObterPorId(IdUsuario);
-            if (usuario == null)
-            {
-                AddMensagem(Mensagem.Error("Usuario não localizado."));
-            }
-            else if (!usuario.Empresas.Any(x => x.Id == dto.EmpresaId && x.PropostasValor.Any(y => y.Id == dto.Id)))
-            {
-                AddMensagem(Mensagem.Error("Proposta de valor não relacionado ao usuário."));
-            }
-
             Empresa empresa = empresaRepository.ObterPorId(dto.EmpresaId);
             if (empresa == null)
             {
                 AddMensagem(Mensagem.Error("Empresa não localizada."));
+            }
+            if (!empresa.Usuarios.Any(x => x.Id == IdUsuario))
+            {
+                AddMensagem(Mensagem.Error("Proposta de valor não relacionado ao usuário."));
             }
 
             PropostaValor? proposta = null;
@@ -59,8 +55,6 @@ namespace projetox.Domain.Core.Services
                     AddMensagens(fonte);
                     fonteReceitas.Add(fonte);
                 });
-
-                proposta.AtualizarFontesReceita(fonteReceitas);
 
                 List<CanalDistribuicaoOpcao> canais = [];
                 dto.CanaisDistribuicaoOpcao.ForEach(x =>
@@ -92,13 +86,17 @@ namespace projetox.Domain.Core.Services
                     relacionamentos.Add(fonte);
                 });
 
-                proposta.AtualizarRelacionamentoCliente(relacionamentos);
-
                 AddMensagens(proposta);
 
                 if (Valido())
                 {
                     propostaValorRepository.Editar(proposta);
+
+                    fonteReceitaRepository.RemoverLista(proposta.FontesReceita);
+                    fonteReceitaRepository.AdicionarLista(fonteReceitas);
+                    relacionamentoClienteRepository.RemoverLista(proposta.RelacionamentoClientes);
+                    relacionamentoClienteRepository.AdicionarLista(relacionamentos);
+
                     AddMensagem(Mensagem.Info("Proposta de valor alterada com sucesso !"));
                 }
             }

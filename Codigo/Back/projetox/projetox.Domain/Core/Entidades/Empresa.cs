@@ -109,7 +109,8 @@ namespace projetox.Domain.Core.Entidades
 
         public void LimparRedesSociais()
         {
-            this.RedesSociais.Clear();
+            var lista = this.RedesSociais.ToList();
+            lista.ForEach(x => RemoverRedeSocial(x));
         }
 
         public void RemoverUsuario(Usuario usuario)

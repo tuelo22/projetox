@@ -9,7 +9,7 @@ namespace projetox.Repository.Base.Repository
             where TEntidade : BaseEntity
             where TId : struct
     {
-        private readonly DbContext _context = context;
+        protected readonly DbContext _context = context;
 
         public IQueryable<TEntidade> ListarPor(Expression<Func<TEntidade, bool>> where, params Expression<Func<TEntidade, object>>[] includeProperties)
         {
@@ -56,8 +56,9 @@ namespace projetox.Repository.Base.Repository
 
         public TEntidade Editar(TEntidade entidade)
         {
-            var entityEntry = _context.Set<TEntidade>().Update(entidade);
-            return entityEntry.Entity;
+            _context.Entry(entidade).State = EntityState.Modified;
+
+            return entidade;
         }
 
         public void Remover(TEntidade entidade)
@@ -90,22 +91,6 @@ namespace projetox.Repository.Base.Repository
         public bool Existe(Func<TEntidade, bool> where)
         {
             return _context.Set<TEntidade>().Any(where);
-        }
-
-        /// <summary>
-        /// Realiza include populando o objeto passado por parametro
-        /// </summary>
-        /// <param name="query">Informe o objeto do tipo IQuerable</param>
-        /// <param name="includeProperties">Ínforme o array de expressões que deseja incluir</param>
-        /// <returns></returns>
-        private static IQueryable<TEntidade> Include(IQueryable<TEntidade> query, params Expression<Func<TEntidade, object>>[] includeProperties)
-        {
-            foreach (var property in includeProperties)
-            {
-                query = query.Include(property);
-            }
-
-            return query;
         }
     }
 }

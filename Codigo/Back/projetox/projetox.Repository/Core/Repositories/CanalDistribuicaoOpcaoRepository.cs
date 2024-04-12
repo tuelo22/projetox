@@ -1,4 +1,6 @@
-﻿using projetox.Domain.Core.Entidades;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
+using projetox.Domain.Core.Entidades;
 using projetox.Domain.Core.Interfaces.Repositories;
 using projetox.Repository.Base.Repository;
 
