@@ -23,10 +23,6 @@ namespace projetox.Domain.Core.DTO
         [Required]
         public Guid NaturezaJuridicaId { get; set; }
         /// <summary>
-        /// Descrição da natureza juridica.
-        /// </summary>
-        public string DescricaoNaturezaJuridica { get; set; }
-        /// <summary>
         /// Data de abertura da empresa
         /// </summary>
         [Required]
@@ -77,7 +73,6 @@ namespace projetox.Domain.Core.DTO
                 Id = entidade.Id,
                 Documento = entidade.Documento.Numero,
                 NaturezaJuridicaId = entidade.NaturezaJuridica.Id,
-                DescricaoNaturezaJuridica = entidade.NaturezaJuridica.Descricao,
                 Abertura = entidade.Abertura,
                 QuantidadeFuncionario = entidade.QuantidadeFuncionario,
                 Nome = entidade.Nome,
