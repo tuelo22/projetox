@@ -11,6 +11,7 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(RelacionamentoCliente));
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(100);
             builder.HasOne(x => x.PropostaValor).WithMany(x => x.RelacionamentoClientes).IsRequired().OnDelete(DeleteBehavior.Cascade);
         }

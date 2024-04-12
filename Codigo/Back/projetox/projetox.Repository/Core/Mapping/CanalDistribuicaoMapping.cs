@@ -11,6 +11,7 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(CanalDistribuicao));
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(100);
             builder.HasOne(x => x.CanalDistribuicaoOpcao).WithMany(y => y.CanaisDistribuicao).IsRequired();            
         }

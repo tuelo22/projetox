@@ -40,11 +40,6 @@ namespace projetox.Repository.Base.Repository
         {
             IQueryable<TEntidade> query = _context.Set<TEntidade>();
 
-            if (includeProperties.Length != 0)
-            {
-                return RepositoryBase<TEntidade, TId>.Include(_context.Set<TEntidade>(), includeProperties);
-            }
-
             return query;
         }
 

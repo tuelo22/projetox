@@ -12,6 +12,7 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(SegmentoCliente));
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id);
             builder.Property(x => x.Ajudar).IsRequired().HasMaxLength(100);
             builder.Property(x => x.BuscarProduto).IsRequired().HasMaxLength(100);
             builder.Property(x => x.ServindoPessoa).IsRequired().HasMaxLength(100);

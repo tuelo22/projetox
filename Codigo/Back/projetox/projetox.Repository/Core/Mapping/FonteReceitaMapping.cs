@@ -11,6 +11,7 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(FonteReceita));
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(100);
             builder.HasOne(x => x.PropostaValor).WithMany(y => y.FontesReceita).IsRequired().OnDelete(DeleteBehavior.Cascade);
         }

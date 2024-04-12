@@ -11,6 +11,7 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(SegmentoReclamacaoAtendimento));
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id);
             builder.Property(x => x.Descricao).HasMaxLength(100);
             builder.HasOne<SegmentoCliente>(x => x.SegmentoCliente).WithMany(y => y.SegmentoReclamacaoAtendimentos).IsRequired().OnDelete(DeleteBehavior.Cascade);
         }

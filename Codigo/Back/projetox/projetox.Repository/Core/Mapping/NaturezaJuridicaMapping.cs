@@ -11,6 +11,7 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(NaturezaJuridica));
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(100);
 
             builder.HasData(new NaturezaJuridica[]

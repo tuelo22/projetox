@@ -30,6 +30,13 @@ namespace projetox.Domain.Core.Services
             Documento documento = new(dto.Documento);
             AddMensagens(documento);
 
+            var existe = empresaRepository.ListarPor(x => x.Documento.Numero == dto.Documento).ToList();
+
+            if (existe.Any())
+            {
+                AddMensagem(Mensagem.Error("Empresa já cadastrada."));
+            }
+
             NaturezaJuridica? naturezaJuridica = naturezaJuridicaRepository.ObterPorId(dto.NaturezaJuridicaId);
 
             if (naturezaJuridica == null)
@@ -60,6 +67,7 @@ namespace projetox.Domain.Core.Services
                     if (Valido())
                     {
                         empresa.AdicionarRedeSocial(redeSocial);
+                        AddMensagem(Mensagem.Info("Empresa cadastrada com sucesso !"));
                     }
                 });
 

@@ -14,6 +14,7 @@ namespace projetox.Repository.Core.Mapping
             builder.ToTable(nameof(Empresa));
 
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id);
             builder.Property(x => x.Objetivo).IsRequired().HasMaxLength(255);
             builder.OwnsOne<Documento>(d => d.Documento, c =>
             {
@@ -39,17 +40,6 @@ namespace projetox.Repository.Core.Mapping
             builder.Property(x => x.QuantidadeFuncionario).IsRequired();
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(255);
             builder.Property(x => x.URLSite).HasMaxLength(500);
-
-            //builder
-            //    .HasMany(e => e.Usuarios)
-            //    .WithMany(e => e.Empresas)
-            //    .UsingEntity(
-            //        "EmpresaUsuario",
-            //        l => l.HasOne(typeof(Empresa)).WithMany().HasForeignKey("EmpresaId").HasPrincipalKey(nameof(Empresa.Id)),
-            //        r => r.HasOne(typeof(Usuario)).WithMany().HasForeignKey("UsuarioId").HasPrincipalKey(nameof(Usuario.Id)),
-            //        j => j.HasKey("EmpresaId", "UsuarioId"));
-
-
         }
     }
 }
