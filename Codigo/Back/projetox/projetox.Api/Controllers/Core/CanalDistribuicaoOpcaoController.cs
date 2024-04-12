@@ -14,7 +14,7 @@ namespace projetox.Api.Controllers.Core
     /// <param name="_CanalDistribuicaoOpcaoService"></param>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Geral")]
+    [Authorize]
     public class CanalDistribuicaoOpcaoController(
         IUnitOfWork unitOfWork,
         ICanalDistribuicaoOpcaoService _CanalDistribuicaoOpcaoService) : ControllerAPIBase(unitOfWork)

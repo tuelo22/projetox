@@ -16,7 +16,7 @@ namespace projetox.Api.Controllers.Core
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Geral")]
+    [Authorize]
     public class PropostaValorController(
         IUnitOfWork unitOfWork,
         IPropostaValorService _PropostaValorService) : ControllerAPIBase(unitOfWork)

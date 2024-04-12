@@ -14,7 +14,7 @@ namespace projetox.Api.Controllers.Core
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Geral")]
+    [Authorize]
     public class EmpresaController(
         IUnitOfWork unitOfWork, IEmpresaService _EmpresaService) 
         : ControllerAPIBase(unitOfWork)

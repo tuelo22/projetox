@@ -40,6 +40,7 @@ namespace projetox.Api.Extensoes
             services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<IPropostaValorService, PropostaValorService>();
             services.AddScoped<ISegmentoClienteService, SegmentoClienteService>();
+            services.AddScoped<ICanalDistribuicaoOpcaoService, CanalDistribuicaoOpcaoService>();
         }
     }
 }

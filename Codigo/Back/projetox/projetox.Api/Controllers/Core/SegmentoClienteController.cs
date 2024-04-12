@@ -15,7 +15,7 @@ namespace projetox.Api.Controllers.Core
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Geral")]
+    [Authorize]
     public class SegmentoClienteController(
         IUnitOfWork unitOfWork,
         ISegmentoClienteService _SegmentoClienteService) : ControllerAPIBase(unitOfWork)
