@@ -41,6 +41,7 @@ namespace projetox.Api.Extensoes
             services.AddScoped<IPropostaValorService, PropostaValorService>();
             services.AddScoped<ISegmentoClienteService, SegmentoClienteService>();
             services.AddScoped<ICanalDistribuicaoOpcaoService, CanalDistribuicaoOpcaoService>();
+            services.AddScoped<INaturezaJuridicaService, NaturezaJuridicaService>();
         }
     }
 }

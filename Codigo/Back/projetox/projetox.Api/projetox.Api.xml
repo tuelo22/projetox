@@ -184,6 +184,28 @@
             <param name="IdUsuario">Identificador do Usuario</param>
             <param name="dto">Dados da empresa</param>
         </member>
+        <member name="T:projetox.Api.Controllers.Core.NaturezaJuridicaController">
+            <summary>
+            Natureza jurídica.
+            </summary>
+            <param name="unitOfWork"></param>
+            <param name="_NaturezaJuridicaService"></param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.NaturezaJuridicaController.#ctor(projetox.Repository.Transactions.IUnitOfWork,projetox.Domain.Core.Interfaces.Services.INaturezaJuridicaService)">
+            <summary>
+            Natureza jurídica.
+            </summary>
+            <param name="unitOfWork"></param>
+            <param name="_NaturezaJuridicaService"></param>
+        </member>
+        <member name="M:projetox.Api.Controllers.Core.NaturezaJuridicaController.ListarTodos">
+            <summary>
+            Listar todas as naturezas jurídicas.
+            </summary>
+            <remarks>
+            Listar todas as naturezas jurídicas.
+            </remarks>
+        </member>
         <member name="T:projetox.Api.Controllers.Core.PropostaValorController">
             <summary>
             Proposta de valor.
