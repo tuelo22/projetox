@@ -37,6 +37,8 @@ namespace projetox.Api.Extensoes
             services.AddScoped<IRelacionamentoClienteRepository, RelacionamentoClienteRepository>();
             services.AddScoped<ISegmentoAjudarPessoaRepository, SegmentoAjudarPessoaRepository>();
             services.AddScoped<ISegmentoBuscarEmpresaRepository, SegmentoBuscarEmpresaRepository>();
+            services.AddScoped<ISegmentoReclamacaoAtendimentoRepository, SegmentoReclamacaoAtendimentoRepository>();
+
             //Service
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IRegistrarUsuarioService, RegistrarUsuarioService>();
