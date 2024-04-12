@@ -11,7 +11,7 @@ namespace projetox.Domain.Core.DTO
         /// <summary>
         /// Identificador. 
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         /// <summary>
         /// Descrição.
         /// </summary>

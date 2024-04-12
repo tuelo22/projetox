@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using projetox.Domain.Autenticacao.Entidades;
 using projetox.Domain.Base.ValueObjects;
 using projetox.Domain.Core.Entidades;
 using projetox.Domain.Core.ValueObjects;
 
 namespace projetox.Repository.Core.Mapping
 {
-    internal class EmpresaMapping : IEntityTypeConfiguration<Empresa>
+    public class EmpresaMapping : IEntityTypeConfiguration<Empresa>
     {
         public void Configure(EntityTypeBuilder<Empresa> builder)
         {
@@ -40,6 +39,9 @@ namespace projetox.Repository.Core.Mapping
             builder.Property(x => x.QuantidadeFuncionario).IsRequired();
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(255);
             builder.Property(x => x.URLSite).HasMaxLength(500);
+            builder
+                .HasMany(e => e.RedesSociais)
+                .WithOne(e => e.Empresa);
         }
     }
 }

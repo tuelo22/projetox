@@ -26,6 +26,8 @@ namespace projetox.Domain.Base.Interfaces.Repositories
 
         void Remover(TEntidade entidade);
 
+        void RemoverLista(IEnumerable<TEntidade> entidade);
+
         IEnumerable<TEntidade> AdicionarLista(IEnumerable<TEntidade> entidades);
     }
 }

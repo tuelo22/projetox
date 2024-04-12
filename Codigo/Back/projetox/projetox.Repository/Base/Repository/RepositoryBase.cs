@@ -56,15 +56,19 @@ namespace projetox.Repository.Base.Repository
 
         public TEntidade Editar(TEntidade entidade)
         {
-            _context.Entry(entidade).State = EntityState.Modified;
-
-            return entidade;
+            var entityEntry = _context.Set<TEntidade>().Update(entidade);
+            return entityEntry.Entity;
         }
 
         public void Remover(TEntidade entidade)
         {
             _context.Set<TEntidade>().Remove(entidade);
         }
+
+        public void RemoverLista(IEnumerable<TEntidade> entidade)
+        {
+            _context.Set<TEntidade>().RemoveRange(entidade);
+        }        
 
         /// <summary>
         /// Adicionar um coleção de entidades ao contexto do entity framework

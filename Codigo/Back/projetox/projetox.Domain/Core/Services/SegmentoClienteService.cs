@@ -16,7 +16,11 @@ namespace projetox.Domain.Core.Services
     {
         public ResponseBaseDTO Atualizar(Guid IdUsuario, SegmentoClienteDTO dto)
         {
-            SegmentoCliente segmento = segmentoClienteRepository.ObterPorId(dto.Id);
+            SegmentoCliente segmento = null;
+            if (dto.Id != null)
+            {
+                segmento = segmentoClienteRepository.ObterPorId(dto.Id.Value);
+            }             
 
             if (segmento == null)
             {

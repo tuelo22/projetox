@@ -35,7 +35,13 @@ namespace projetox.Domain.Core.Services
                 AddMensagem(Mensagem.Error("Empresa não localizada."));
             }
 
-            PropostaValor proposta = propostaValorRepository.ObterPorId(dto.Id);
+            PropostaValor? proposta = null;
+
+            if(dto.Id != null)
+            {
+                proposta = propostaValorRepository.ObterPorId(dto.Id.Value);
+            }
+
             if (proposta == null)
             {
                 AddMensagem(Mensagem.Error("Proposta de valor não localizada."));
@@ -59,7 +65,12 @@ namespace projetox.Domain.Core.Services
                 List<CanalDistribuicaoOpcao> canais = [];
                 dto.CanaisDistribuicaoOpcao.ForEach(x =>
                 {
-                    CanalDistribuicaoOpcao? fonte = canalDistribuicaoOpcaoRepository.ObterPorId(x.Id);
+                    CanalDistribuicaoOpcao? fonte = null;
+
+                    if(x.Id != null)
+                    {
+                        fonte = canalDistribuicaoOpcaoRepository.ObterPorId(x.Id.Value);
+                    }
 
                     if (fonte == null)
                     {
@@ -124,11 +135,16 @@ namespace projetox.Domain.Core.Services
 
                 dto.CanaisDistribuicaoOpcao.ForEach(x =>
                 {
-                    CanalDistribuicaoOpcao? fonte = canalDistribuicaoOpcaoRepository.ObterPorId(x.Id);
+                    CanalDistribuicaoOpcao? fonte = null;
+
+                    if(x.Id != null)
+                    {
+                        fonte = canalDistribuicaoOpcaoRepository.ObterPorId(x.Id.Value);
+                    }
 
                     if (fonte == null)
                     {
-                        AddMensagem(Mensagem.Error("Opção de canal de distribuição {x.Id} não localizado."));
+                        AddMensagem(Mensagem.Error($"Opção de canal de distribuição {x.Id} não localizado."));
                     }
                     else
                     {

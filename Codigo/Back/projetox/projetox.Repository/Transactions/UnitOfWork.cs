@@ -1,4 +1,6 @@
-﻿namespace projetox.Repository.Transactions
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace projetox.Repository.Transactions
 {
     public class UnitOfWork : IUnitOfWork
     {

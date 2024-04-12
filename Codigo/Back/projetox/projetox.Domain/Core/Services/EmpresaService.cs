@@ -16,7 +16,8 @@ namespace projetox.Domain.Core.Services
     public class EmpresaService(
         IRepositoryUsuario repositoryUsuario,
         IEmpresaRepository empresaRepository,
-        INaturezaJuridicaRepository naturezaJuridicaRepository) : ServiceBase, IEmpresaService
+        INaturezaJuridicaRepository naturezaJuridicaRepository,
+        IRedeSocialRepository redeSocialRepository) : ServiceBase, IEmpresaService
     {
         public ResponseBaseDTO Cadastrar(Guid IdUsuario, EmpresaDTO dto)
         {
@@ -103,20 +104,20 @@ namespace projetox.Domain.Core.Services
 
         public ResponseBaseDTO Atualizar(Guid IdUsuario, EmpresaDTO dto)
         {
-            Usuario usuario = repositoryUsuario.ObterPorId(IdUsuario);
-            if (usuario == null)
+            Empresa empresa = null;
+
+            if (dto.Id != null)
             {
-                AddMensagem(Mensagem.Error("Usuario não localizado."));
-            }
-            else if (!usuario.Empresas.Any(x => x.Id == dto.Id))
-            {
-                AddMensagem(Mensagem.Error("Empresa não relacionado ao usuário."));
+                empresa = empresaRepository.ObterPorId(dto.Id.Value);
             }
 
-            Empresa empresa = empresaRepository.ObterPorId(dto.Id);
             if (empresa == null)
             {
                 AddMensagem(Mensagem.Error("Empresa não localizada."));
+            }
+            else if (!empresa.Usuarios.Any(x => x.Id == IdUsuario))
+            {
+                AddMensagem(Mensagem.Error("Empresa não relacionado ao usuário."));
             }
 
             Documento documento = new(dto.Documento);
@@ -146,7 +147,8 @@ namespace projetox.Domain.Core.Services
                 empresa.AtualizaDataAbertura(dto.Abertura);
                 empresa.AtualizaQuantidadeFuncionario(dto.QuantidadeFuncionario);
                 empresa.AtualizarNome(dto.Nome);
-                empresa.LimparRedesSociais();
+
+                List<RedeSocial> redeSocials = [];
 
                 dto.RedesSociais.ForEach(x =>
                 {
@@ -155,7 +157,7 @@ namespace projetox.Domain.Core.Services
 
                     if (Valido())
                     {
-                        empresa.AdicionarRedeSocial(redeSocial);
+                        redeSocials.Add(redeSocial);
                     }
                 });
 
@@ -164,6 +166,10 @@ namespace projetox.Domain.Core.Services
                 if (Valido())
                 {
                     empresaRepository.Editar(empresa);
+
+                    // rede social repository
+                    redeSocialRepository.RemoverLista(empresa.RedesSociais);
+                    redeSocialRepository.AdicionarLista(redeSocials);
 
                     AddMensagem(Mensagem.Info("Empresa atualizada com sucesso !"));
                 }

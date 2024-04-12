@@ -32,6 +32,7 @@ namespace projetox.Api.Extensoes
             services.AddScoped<ICanalDistribuicaoOpcaoRepository, CanalDistribuicaoOpcaoRepository>();
             services.AddScoped<IPropostaValorRepository, PropostaValorRepository>();
             services.AddScoped<ISegmentoClienteRepository, SegmentoClienteRepository>();
+            services.AddScoped<IRedeSocialRepository, RedeSocialRepository>();
 
             //Service
             services.AddScoped<ITokenService, TokenService>();
