@@ -27,5 +27,20 @@ namespace projetox.Domain.Core.Entidades
                 AddMensagem(Mensagem.Error("É obrigatório informar a descrição da natureza juridica."));
             }
         }
+
+        /// <summary>
+        /// Construtor principal.
+        /// </summary>
+        /// <param name="descricao"></param>
+        public NaturezaJuridica(String id, string descricao)
+        {
+            Id = Guid.Parse(id);
+            Descricao = descricao;
+
+            if (String.IsNullOrEmpty(descricao))
+            {
+                AddMensagem(Mensagem.Error("É obrigatório informar a descrição da natureza juridica."));
+            }
+        }
     }
 }

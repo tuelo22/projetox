@@ -10,7 +10,7 @@ namespace projetox.Domain.Base.Entidades
         /// <summary>
         /// Identificador
         /// </summary>
-        public Guid Id { get; private set; }
+        public Guid Id { get; protected set; }
 
         /// <summary>
         /// Construtor padrão.

@@ -28,5 +28,21 @@ namespace projetox.Domain.Core.Entidades
                 AddMensagem(Mensagem.Error("É obrigatório informar a descrição da opção do canal de distribuição."));
             }
         }
+
+        /// <summary>
+        /// Construtor principal.
+        /// </summary>
+        /// <param name="descricao"></param>
+        /// <param name="propostaValor"></param>
+        public CanalDistribuicaoOpcao(String id, String descricao)
+        {
+            Id = Guid.Parse(id);
+            Descricao = descricao;
+
+            if (String.IsNullOrEmpty(Descricao))
+            {
+                AddMensagem(Mensagem.Error("É obrigatório informar a descrição da opção do canal de distribuição."));
+            }
+        }
     }
 }
