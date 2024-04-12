@@ -1,9 +1,9 @@
 ﻿using projetox.Domain.Base.DTO.Arguments;
 
-namespace projetox.Domain.Autenticacao.DTO.Arguments.Token
+namespace projetox.Domain.Autenticacao.DTO
 {
     public class TokenDTO : ResponseBaseDTO
     {
-        public String? Token { get; set; }
+        public string? Token { get; set; }
     }
 }

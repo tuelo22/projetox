@@ -1,4 +1,4 @@
-﻿using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
+﻿using projetox.Domain.Autenticacao.DTO.Arguments;
 using projetox.Domain.Autenticacao.Entidades;
 using projetox.Domain.Autenticacao.Interfaces.Repositories;
 using projetox.Domain.Autenticacao.Interfaces.Services;

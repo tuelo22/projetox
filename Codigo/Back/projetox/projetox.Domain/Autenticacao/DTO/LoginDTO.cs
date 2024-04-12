@@ -1,4 +1,4 @@
-﻿namespace projetox.Domain.Autenticacao.DTO.Arguments.Usuario
+﻿namespace projetox.Domain.Autenticacao.DTO
 {
     /// <summary>
     /// Dados de login

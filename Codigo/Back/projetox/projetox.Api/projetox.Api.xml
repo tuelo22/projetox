@@ -66,7 +66,7 @@
             Controlador de usuarios nao autenticados
             </summary>
         </member>
-        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.Cadastrar(projetox.Domain.Autenticacao.DTO.Arguments.Usuario.NovoUsuarioDTO)">
+        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.Cadastrar(projetox.Domain.Autenticacao.DTO.Arguments.NovoUsuarioDTO)">
             <summary>
             Cadastrar usuarios
             </summary>
@@ -75,7 +75,7 @@
             </remarks>
             <param name="usuario">Dados do usuario</param>
         </member>
-        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.Login(projetox.Domain.Autenticacao.DTO.Arguments.Usuario.LoginDTO)">
+        <member name="M:projetox.Api.Controllers.Autenticacao.UsuarioController.Login(projetox.Domain.Autenticacao.DTO.LoginDTO)">
             <summary>
             Login
             </summary>

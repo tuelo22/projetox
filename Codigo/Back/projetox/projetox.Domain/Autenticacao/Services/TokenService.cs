@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using projetox.Domain.Autenticacao.DTO.Arguments.Token;
-using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
+using projetox.Domain.Autenticacao.DTO;
+using projetox.Domain.Autenticacao.DTO.Arguments;
 using projetox.Domain.Autenticacao.Interfaces.Repositories;
 using projetox.Domain.Autenticacao.Interfaces.Services;
 using projetox.Domain.Autenticacao.ValueObjects;
@@ -10,6 +10,8 @@ using projetox.Domain.Notification.Entidades;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace projetox.Domain.Autenticacao.Services
 {
@@ -46,6 +48,7 @@ namespace projetox.Domain.Autenticacao.Services
 
             if (Valido() && usuario != null)
             {
+                UsuarioAutenticadoDTO usuarioDto = (UsuarioAutenticadoDTO)usuario;
                 var secretkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_Configuration["Jwt:key"] ?? String.Empty));
                 String issuer = _Configuration["Jwt:Issuer"] ?? String.Empty;
                 String audience = _Configuration["Jwt:Audience"] ?? String.Empty;
@@ -55,8 +58,7 @@ namespace projetox.Domain.Autenticacao.Services
                      audience: audience,
                      claims: new[]
                      {
-                         new Claim(type: ClaimTypes.Name, value: usuario.Email.Endereco),
-                         new Claim(type: ClaimTypes.NameIdentifier, value: usuario.Id.ToString()),
+                         new Claim(type: ClaimTypes.Name, value: JsonSerializer.Serialize(usuarioDto)),
                          new Claim(type: ClaimTypes.Role, value: "Geral")
                      },
                      expires:DateTime.Now.AddDays(1),

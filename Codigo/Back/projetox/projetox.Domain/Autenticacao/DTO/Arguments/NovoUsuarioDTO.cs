@@ -1,4 +1,4 @@
-﻿namespace projetox.Domain.Autenticacao.DTO.Arguments.Usuario
+﻿namespace projetox.Domain.Autenticacao.DTO.Arguments
 {
     public struct NovoUsuarioDTO
     {

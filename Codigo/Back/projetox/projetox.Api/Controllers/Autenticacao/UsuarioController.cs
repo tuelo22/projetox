@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using projetox.Api.Controllers.Base;
-using projetox.Domain.Autenticacao.DTO.Arguments.Token;
-using projetox.Domain.Autenticacao.DTO.Arguments.Usuario;
+using projetox.Domain.Autenticacao.DTO;
+using projetox.Domain.Autenticacao.DTO.Arguments;
 using projetox.Domain.Autenticacao.Interfaces.Services;
 using projetox.Domain.Base.DTO.Arguments;
 using projetox.Repository.Transactions;
