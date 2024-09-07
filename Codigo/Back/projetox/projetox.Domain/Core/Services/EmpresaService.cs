@@ -68,17 +68,16 @@ namespace projetox.Domain.Core.Services
                     if (Valido())
                     {
                         empresa.AdicionarRedeSocial(redeSocial);
-                        AddMensagem(Mensagem.Info("Empresa cadastrada com sucesso !"));
                     }
                 });
 
                 AddMensagens(empresa);
+                empresa.AdicionarUsuario(usuario);
 
                 if (Valido())
                 {
-                    empresa.AdicionarUsuario(usuario);
-
                     empresaRepository.Adicionar(empresa);
+                    AddMensagem(Mensagem.Info("Empresa cadastrada com sucesso !"));
                 }
             }
 
